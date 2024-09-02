@@ -8,9 +8,11 @@ function FeatureGallery() {
     <>
       <div className="feature-container">
         {/* TODO: add actual images once we get them */}
+        {/* <div className="feature-track"> */}
         <img className="feature-img" src={plateStand} />
         <img className="feature-img" src={pumpkin}/>
         <img className="feature-img" src={platePumpkin}/>
+        {/* </div> */}
       </div>
     </>
   );

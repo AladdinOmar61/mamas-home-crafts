@@ -1,20 +1,18 @@
-import './Home.css'
-import FeatureGallery from '../FeatureGallery/FeatureGallery.jsx';
-import NavBar from '../NavBar/NavBar.jsx'
-import InfoBanner from '../InfoBanner/InfoBanner.jsx';
-import Footer from '../Footer/Footer.jsx';
+import "./Home.css";
+import FeatureGallery from "../FeatureGallery/FeatureGallery.jsx";
+import InfoBanner from "../InfoBanner/InfoBanner.jsx";
+import Footer from "../Footer/Footer.jsx";
+import Header from "../Header/Header.jsx";
 
 function Home() {
-
   return (
     <>
-      <h1>Made by Mom</h1>
-      <NavBar/>
-      <FeatureGallery/>
-      <InfoBanner/>
-      <Footer/>
+      <Header />
+      <FeatureGallery />
+      <InfoBanner />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

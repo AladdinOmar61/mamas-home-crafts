@@ -4,7 +4,7 @@ function Footer() {
     return (
         <>
         <div className="footer">
-            <h1 className='contact-prompt'>Questions? Send them here!</h1>
+            <p> Questions? Send them at <u>monaomar@gmail.com</u></p>
         </div>
         </>
     )

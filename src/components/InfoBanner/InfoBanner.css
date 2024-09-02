@@ -4,11 +4,58 @@
     margin-bottom: 3rem;
     width: 100vw;
     height: 30rem;
-    border-top: solid black 1px;
-    border-bottom: solid black 1px;
 }
 
 .banner-img {
     width: 100vw;
     height: 30rem;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.banner-text {
+    position: relative;
+    bottom: 100%;
+    left: 25%;
+    color: black;
+    font-size: 3rem;
+    text-wrap: wrap;
+}
+
+.buy-now {
+    position: relative;
+    bottom: 100%;
+    left: 25%;
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-family: "Josefin Sans";
+    border: solid black 1px;
+}
+
+.buy-now:hover {
+    background: #000;
+    transition: ease-in-out 0.3s;
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .banner-text {
+        position: relative;
+        bottom: 100%;
+        left: 0%;
+        color: black;
+        font-size: 3rem;
+        text-wrap: wrap;
+    }
+
+    .buy-now {
+        left: 0%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .banner-text {
+        font-size: 2.5rem;
+    }
 }
