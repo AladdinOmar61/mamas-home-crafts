@@ -3,7 +3,9 @@ import './Footer.css'
 function Footer() {
     return (
         <>
-        <div className="footer"></div>
+        <div className="footer">
+            <h1 className='contact-prompt'>Questions? Send them here!</h1>
+        </div>
         </>
     )
 }

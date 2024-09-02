@@ -1,8 +1,14 @@
 .info-banner {
     margin: 0 auto;
     margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 100vw;
     height: 30rem;
     border-top: solid black 1px;
     border-bottom: solid black 1px;
+}
+
+.banner-img {
+    width: 100vw;
+    height: 30rem;
 }
