@@ -31,6 +31,8 @@
     font-size: 1.2rem;
     font-family: "Josefin Sans";
     border: solid black 1px;
+    background-color: white;
+    color: black;
 }
 
 .buy-now:hover {
