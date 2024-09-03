@@ -1,6 +1,5 @@
-.feature-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* .feature-container {
+    display: flex;
     justify-items: center;
     position: relative;
     top: 2rem;
@@ -12,10 +11,11 @@
   .feature-img {
     width: 30rem;
     height: 20rem;
-    /* border: solid black 1px; */
+    border: solid black 1px;
     margin: 2rem;
-    /* object-fit: cover; */
-  }
+    opacity: 1;
+    object-fit: cover;
+ } 
   
   
   @media screen and (min-width: 110rem) {
@@ -25,4 +25,47 @@
       border: solid black 1px;
       margin: 2rem;
     }
+  } */
+
+  .carousel {
+    position: relative;
+    margin: auto;
   }
+  
+  .carousel-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    transition: all 0.5s;
+    width: 100%;
+  }
+  
+  .carousel-item {
+    width: 20rem;
+    height: 25rem;
+    margin: 1rem;
+    min-width: calc(100% / 3.2);
+  }
+  
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0);
+    color: white;
+    border: none;
+    font-size: 18px;
+    padding: 5px 11px 5px 11px;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;/
+  }
+  
