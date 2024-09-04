@@ -1,50 +1,24 @@
-/* .feature-container {
-    display: flex;
-    justify-items: center;
+  .feature-gallery {
     position: relative;
-    top: 2rem;
-    -ms-overflow-style: none;
+    overflow-x: hidden;
     scrollbar-width: none;
-    overflow-x: scroll;
+    box-sizing: border-box;
+    margin: 0 20px;
   }
   
-  .feature-img {
-    width: 30rem;
-    height: 20rem;
-    border: solid black 1px;
-    margin: 2rem;
-    opacity: 1;
-    object-fit: cover;
- } 
-  
-  
-  @media screen and (min-width: 110rem) {
-    .feature-img {
-      width: 60rem;
-      height: 30rem;
-      border: solid black 1px;
-      margin: 2rem;
-    }
-  } */
-
-  .carousel {
-    position: relative;
-    margin: auto;
-  }
-  
-  .carousel-inner {
+  .feature-gallery-inner {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     flex-wrap: nowrap;
     transition: all 0.5s;
     width: 100%;
   }
   
-  .carousel-item {
-    width: 20rem;
-    height: 25rem;
-    margin: 1rem;
-    min-width: calc(100% / 3.2);
+  .gallery-item {
+    min-width: 33.3%;
+    height: 20rem;
+    padding: 0.03%;
   }
   
   .prev,
@@ -68,4 +42,66 @@
   .next {
     right: 10px;/
   }
+
+  @media screen and (min-width: 1760px) {
+    .gallery-item {
+      width: 60rem;
+      height: 30rem;
+    }
+  }
   
+  @media screen and (max-width: 1200px) {
+    .gallery-item {
+      height: 20rem;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .gallery-item {
+      height: 15rem;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .gallery-item {
+      height: 12rem;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .gallery-item {
+      height: 10rem;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .gallery-item {
+      height: 10rem;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .gallery-item {
+      height: 8rem;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .gallery-item {
+      height: 7rem;
+    }
+    .next, .prev {
+      font-size: 10px;
+     padding: 3px 7px 3px 7px;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .gallery-item {
+      height: 5rem;
+    }
+    .next, .prev {
+      font-size: 10px;
+      padding: 3px 7px 3px 7px;
+    }
+  }

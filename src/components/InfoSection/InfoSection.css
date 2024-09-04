@@ -1,0 +1,24 @@
+.info-section {
+    width: 100vw;
+    height: 20rem;
+    background: #d0903c;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.info-bit {
+    min-width: 33%;
+}
+
+@media screen and (max-width: 800px) {
+    .info-section {
+        height: 20rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .info-section {
+        height: 15rem;
+    }
+}

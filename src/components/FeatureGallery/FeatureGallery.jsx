@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./FeatureGallery.css"; // Import CSS for styling
+import "./FeatureGallery.css";
 import plateStand from "../../assets/images/plateOnStand.jpg";
 import pumpkin from "../../assets/images/pumpkin.jpg";
 import platePumpkin from "../../assets/images/platePumpkinStand.jpg";
@@ -31,19 +31,19 @@ const FeatureGallery = () => {
   }, [currentIndex]);
 
   return (
-    <div className="carousel">
+    <div className="feature-gallery">
       {images.length > 3 && (
         <button className="prev" onClick={goToPrevious}>
           &#10094;
         </button>
       )}
       <div
-        className="carousel-inner"
+        className="feature-gallery-inner is-scrollable"
         style={{ transform: `translateX(-${currentIndex * (100 / visibleImages)}%)` }}
       >
         {images.map((image, index) => (
           <img
-            className='carousel-item'
+            className='gallery-item'
             key={index}
             src={image}
             alt={`Slide ${index}`}

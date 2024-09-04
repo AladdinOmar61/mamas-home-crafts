@@ -7,7 +7,7 @@ function InfoBanner() {
         <div className="info-banner">
             <img className="banner-img" src={banner} alt="store banner" />
             <p className='banner-text'>Shop from many options <br /> of nice home decor for the <br /> season you want!</p>
-            <button className='buy-now'>Buy Now</button>
+            <button className='buy-now'>Shop Now</button>
         </div>
         </>
     )
