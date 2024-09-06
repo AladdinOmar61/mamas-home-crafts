@@ -6,7 +6,7 @@ function Cover() {
     <div className="cover">
       <img className="cover-img" src={tempCover} alt="cover-image" />
       <div className="cover-prompt">
-      <p>
+      <p className="cover-text">
         Hand-crafted, home and holiday decor
       </p>
       <button className="explore">Explore</button>

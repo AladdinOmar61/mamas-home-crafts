@@ -40,3 +40,15 @@
     transition: ease-in-out 0.3s;
     color: white;
 }
+
+@media screen and (max-width: 550px) {
+    .cover-text {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cover-text {
+        font-size: 1.5rem;
+    }
+}

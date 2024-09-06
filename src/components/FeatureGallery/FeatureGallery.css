@@ -25,7 +25,7 @@
   .next {
     position: absolute;
     top: 60%;
-    transform: translateY(-50%);
+    /* transform: translateY(10%); */
     background-color: rgba(0, 0, 0);
     color: white;
     border: none;
@@ -91,8 +91,9 @@
       height: 7rem;
     }
     .next, .prev {
-      font-size: 10px;
+     font-size: 10px;
      padding: 3px 7px 3px 7px;
+     transform: translateY(50%);
     }
   }
 
