@@ -3,7 +3,7 @@
     overflow-x: hidden;
     scrollbar-width: none;
     box-sizing: border-box;
-    margin: 0 20px;
+    margin: 3rem 20px;
   }
   
   .feature-gallery-inner {
@@ -24,7 +24,7 @@
   .prev,
   .next {
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0);
     color: white;
@@ -40,7 +40,7 @@
   }
   
   .next {
-    right: 10px;/
+    right: 10px;
   }
 
   @media screen and (min-width: 1760px) {

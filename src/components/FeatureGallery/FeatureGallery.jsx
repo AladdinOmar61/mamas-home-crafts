@@ -32,6 +32,7 @@ const FeatureGallery = () => {
 
   return (
     <div className="feature-gallery">
+      <h1>Featured Items</h1>
       {images.length > 3 && (
         <button className="prev" onClick={goToPrevious}>
           &#10094;

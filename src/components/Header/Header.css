@@ -4,8 +4,11 @@
     align-items: center;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: static;
     line-height: 0;
+    position: absolute;
+    width: 100vw;
+    top: 0;
+    z-index: 1;
 }
 
 .website-title {

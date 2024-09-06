@@ -1,0 +1,42 @@
+.cover {
+    height: 60vh;
+    background: white;
+    position: relative;
+}
+
+.cover-img {
+    min-width: 100%;
+    min-height: 60vh;
+    max-height: 60vh;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.cover-prompt {
+    color: black;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: left;
+    line-height: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.explore {
+    width: 8rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    font-family: "Josefin Sans";
+    border: solid black 1px;
+    background-color: white;
+    color: black;
+}
+
+.explore:hover {
+    background: #000;
+    transition: ease-in-out 0.3s;
+    color: white;
+}
