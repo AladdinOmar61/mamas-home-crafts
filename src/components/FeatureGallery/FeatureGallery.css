@@ -95,6 +95,10 @@
      padding: 3px 7px 3px 7px;
      transform: translateY(50%);
     }
+
+    .feature-header {
+      font-size: 1rem;
+    }
   }
 
   @media screen and (max-width: 350px) {

@@ -7,8 +7,8 @@ function InfoBanner() {
       <div className="info-banner">
         <img className="banner-img" src={banner} alt="store banner" />
         <p className="banner-text">
-          Shop from many options <br /> of nice home decor for the <br /> season
-          you want!
+        Home decor for you <br /> or a gift for a friend <br /> Made by mama
+
         </p>
         <button className="buy-now">Shop now</button>
       </div>
