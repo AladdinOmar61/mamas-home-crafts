@@ -1,6 +1,6 @@
 .info-section {
   width: 100vw;
-  height: 20rem;
+  height: 15rem;
   background: #d0903c;
   display: flex;
   flex-direction: row;
@@ -34,8 +34,8 @@
 }
 
 .info-icon {
-    height: 7rem;
-    width: 7rem;
+    height: 5rem;
+    width: 5rem;
 }
 
 @keyframes shift {

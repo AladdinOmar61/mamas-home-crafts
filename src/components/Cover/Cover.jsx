@@ -9,7 +9,7 @@ function Cover() {
       <p className="cover-text">
         Hand-crafted, <br /> home and <br /> holiday decor
       </p>
-      <button className="explore">Explore</button>
+      <button className="explore-btn">Explore</button>
       </div>
     </div>
   );
