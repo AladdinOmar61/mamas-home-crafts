@@ -1,6 +1,7 @@
 .info-banner {
     margin: 0 auto;
     margin-top: 3rem;
+    background: black;
     /* margin-bottom: 3rem; */
     width: 100vw;
     height: 25rem;
@@ -17,7 +18,7 @@
     position: relative;
     bottom: 100%;
     left: 25%;
-    color: black;
+    color: white;
     font-size: 3rem;
     text-wrap: wrap;
 }
@@ -46,7 +47,7 @@
         position: relative;
         bottom: 100%;
         left: 0%;
-        color: black;
+        color: white;
         font-size: 3rem;
         text-wrap: wrap;
     }

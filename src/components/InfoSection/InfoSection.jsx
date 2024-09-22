@@ -37,25 +37,25 @@ function InfoSection() {
               className={`mobile-info-bit ${index === currIdx ? "active" : ""}`}
               style={{ color: "white" }}
             >
-              <Icon path={icon.name} className="info-icon" />
-              <p>{icon.msg}</p>
+              <Icon path={icon.name} size={1.5} className="info-icon" />
+              <p className="info-text">{icon.msg}</p>
             </div>
           ))}
         </div>
       ) : (
         <div className="info-section">
-          <div className="info-bit" style={{ color: "white" }}>
-            <Icon path={mdiMotherHeart} className="info-icon" />
-            <p>Made with love and care by mama</p>
-          </div>
-          <div className="info-bit" style={{ color: "white" }}>
-            <Icon path={mdiPackageVariantClosed} className="info-icon" />
-            <p>Packaged securely and precisely</p>
-          </div>
-          <div className="info-bit" style={{ color: "white" }}>
-            <Icon path={mdiTruckDelivery} className="info-icon" />
-            <p>Delivered with speed and safety to your doorstep</p>
-          </div>
+          {icons.map((icon, index) => (
+            <div
+              key={index}
+              className="info-bit"
+              style={{ color: "white" }}
+            >
+              <Icon path={icon.name} size={2} className="info-icon" />
+              <div className="info-text-container">
+              <p className="info-text">{icon.msg}</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </>
