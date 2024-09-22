@@ -1,5 +1,5 @@
 import "./Cover.css";
-import tempCover from '../../assets/images/cover-img.png';
+import tempCover from '../../assets/images/nature.jpg';
 
 function Cover() {
   return (

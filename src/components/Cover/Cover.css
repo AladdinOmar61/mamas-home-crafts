@@ -1,34 +1,25 @@
 .cover {
-    height: 60vh;
+    height: 50vh;
     width: 100vw;
     background: white;
     position: relative;
     margin-top: 70px;
+    text-align: center;
 }
 
 .cover-img {
     width: 100%;
     height: 100%;
-    background-position: 0px 0px;
-    background-position: 0, 100px;
     object-fit: cover;
 }
 
 .cover-prompt {
-    display: flex;
-    color: black;
-    flex-direction: column;
-    font-size: 3rem;
-    transform: translate(13%, -150%);
-    /* 
-    font-weight: 700;
-    text-align: left;
-    line-height: 7rem;
+    color: white;
+    font-size: 3.5rem;
     position: absolute;
-    top: 30%;
-    left: 13%; */
-    /* transform: translate(-50%, -50%); */
-    /* text-align: center; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .cover-text {

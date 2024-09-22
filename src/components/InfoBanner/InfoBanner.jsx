@@ -1,5 +1,5 @@
 import "./InfoBanner.css";
-import banner from "../../assets/images/monaStoreBanner.png";
+import banner from "../../assets/images/monaStoreBanner.jpg";
 
 function InfoBanner() {
   return (
