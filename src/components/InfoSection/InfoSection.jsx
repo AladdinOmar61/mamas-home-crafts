@@ -10,11 +10,11 @@ function InfoSection() {
   const [currIdx, setCurrIdx] = useState(0);
   const size = useWindowSize();
   const icons = [
-    { name: mdiMotherHeart, msg: "Made with love and care by mama" },
-    { name: mdiPackageVariantClosed, msg: "Packaged securely and precisely" },
+    { name: mdiMotherHeart, msg: "Made with love by mama" },
+    { name: mdiPackageVariantClosed, msg: "Secure packaging" },
     {
       name: mdiTruckDelivery,
-      msg: "Delivered with speed and safety to your doorstep",
+      msg: "Delivered with speed and safety",
     },
   ];
 
