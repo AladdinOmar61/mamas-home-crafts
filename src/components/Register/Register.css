@@ -1,0 +1,10 @@
+.register-screen {
+    margin-top: 5.5rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
