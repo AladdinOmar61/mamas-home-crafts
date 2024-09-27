@@ -16,6 +16,10 @@
     font-size: 3.2em;
 }
 
+.website-title:hover {
+    color: black;
+}
+
 .cart {
     color: black;
     padding: 0.5rem;
@@ -79,21 +83,26 @@
     cursor: pointer;
     color: black;
     padding: 0.7rem 0 0.7rem 0;
+    border-bottom: solid transparent 2px;
+    text-decoration: none;
 }
 
 .register:hover {
     border-bottom: solid black 2px;
+    color: black;
 }
 
 .login {
     color: black;
     cursor: pointer;
     padding: 0.7rem 0 0.7rem 0;
+    border-bottom: solid transparent 2px;
 }
 
 .login:hover {
     border-bottom: solid black 2px;
 }
+
 
 @media screen and (max-width: 600px) {
     .website-title {

@@ -1,5 +1,9 @@
 .register-screen {
-    margin-top: 5.5rem;
+    margin-top: 10rem;
+    border: solid black 1px;
+    width: 30rem;
+    margin: 10rem auto;
+    padding: 2rem;
 }
 
 .register-form {
@@ -7,4 +11,56 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.register-form > input {
+    margin-top: 1rem;
+}
+
+.register-email {
+    border: solid black 1px;
+    border-radius: 0;
+    height: 2rem;
+    width: 20rem;
+}
+
+.register-email::placeholder {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.register-email[type=email] {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.register-password {
+    border: solid black 1px;
+    border-radius: 0;
+    height: 2rem;
+    width: 20rem;
+}
+
+.register-password::placeholder {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.register-password[type=password] {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.register-submit {
+    font-family: "Josefin Sans", sans-serif;
+    height: 2rem;
+    width: 5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.register-submit:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
 }

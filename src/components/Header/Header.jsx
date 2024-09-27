@@ -16,7 +16,7 @@ function Header() {
 
   return (
     <div className="header">
-      <h1 className="website-title">Made by Mama</h1>
+      <Link to="/" className="website-title" style={{textDecoration: 'none'}}>Made by Mama</Link>
       {/* {loggedIn && ( */}
       {/* <div className="icons">
           <Icon className="cart" onClick={handleCart} path={mdiCartOutline} size={1.5} />
