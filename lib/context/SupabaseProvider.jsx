@@ -15,12 +15,23 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 
 const SupabaseProvider = (props) => {
   const register = async (email, password) => {
-      const {data, error} = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      console.log(data)
-      if (error) throw error;
+    const { error, data } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    if (error) throw error;
+    try {
+      const {error, data: userData} = await supabase
+        .from("users")
+        .insert({ email, uuid: data.user.id });
+        if (error) {
+          console.error(error);
+        } else {
+          console.log("User created successfully", userData);
+        }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getUsers = async () => {
