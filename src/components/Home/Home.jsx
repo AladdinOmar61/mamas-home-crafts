@@ -1,4 +1,3 @@
-import "./Home.css";
 import FeatureGallery from "../FeatureGallery/FeatureGallery.jsx";
 import InfoBanner from "../InfoBanner/InfoBanner.jsx";
 import Footer from "../Footer/Footer.jsx";
