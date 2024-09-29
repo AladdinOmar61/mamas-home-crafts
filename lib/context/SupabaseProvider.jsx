@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import SupabaseContext from "./SupabaseContext";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
@@ -14,6 +15,9 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 });
 
 const SupabaseProvider = (props) => {
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const register = async (email, password) => {
     const { error, data } = await supabase.auth.signUp({
       email,
@@ -21,7 +25,7 @@ const SupabaseProvider = (props) => {
     });
     if (error) throw error;
     try {
-      const {error, data: userData} = await supabase
+      const {error, data: userData } = await supabase
         .from("users")
         .insert({ email, uuid: data.user.id });
         if (error) {
@@ -34,6 +38,15 @@ const SupabaseProvider = (props) => {
     }
   };
 
+  const login = async (email, password) => {
+    const {error} = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+    if (error) throw error;
+    setLoggedIn(true);
+  }
+
   const getUsers = async () => {
     try {
       const users = await supabase.from("users").select("*");
@@ -44,7 +57,7 @@ const SupabaseProvider = (props) => {
   };
 
   return (
-    <SupabaseContext.Provider value={{ getUsers, register }}>
+    <SupabaseContext.Provider value={{ loggedIn, getUsers, register, login }}>
       {props.children}
     </SupabaseContext.Provider>
   );

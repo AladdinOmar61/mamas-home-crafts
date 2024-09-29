@@ -1,0 +1,66 @@
+.login-screen {
+    margin-top: 10rem;
+    border: solid black 1px;
+    width: 30rem;
+    margin: 10rem auto;
+    padding: 2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form > input {
+    margin-top: 1rem;
+}
+
+.login-email {
+    border: solid black 1px;
+    border-radius: 0;
+    height: 2rem;
+    width: 20rem;
+}
+
+.login-email::placeholder {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.login-email[type=email] {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.login-password {
+    border: solid black 1px;
+    border-radius: 0;
+    height: 2rem;
+    width: 20rem;
+}
+
+.login-password::placeholder {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.login-password[type=password] {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.3rem;
+}
+
+.login-submit {
+    font-family: "Josefin Sans", sans-serif;
+    height: 2rem;
+    width: 5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.login-submit:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
+}

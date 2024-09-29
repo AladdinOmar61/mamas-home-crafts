@@ -1,4 +1,4 @@
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header.jsx";
 import "./Register.css";
 import { useSupabase } from "../../../lib/hooks/useSupabase.js";
 import { useState } from "react";
