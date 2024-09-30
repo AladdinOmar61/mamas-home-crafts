@@ -6,6 +6,10 @@
     padding: 2rem;
 }
 
+.register-header {
+    color: black;
+}
+
 .register-form {
     display: flex;
     flex-direction: column;

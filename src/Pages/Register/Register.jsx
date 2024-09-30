@@ -29,7 +29,7 @@ function Register() {
     <>
       <Header />
       <div className="register-screen">
-        <h1>Register</h1>
+        <h1 className="register-header">Register</h1>
         <form className="register-form">
           <input className="register-email" type="email" placeholder="email" value={email} onChange={handleEmail} />
           <input className="register-password" type="password" placeholder="password" value={password} onChange={handlePassword} />

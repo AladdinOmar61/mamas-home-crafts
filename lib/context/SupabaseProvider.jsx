@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import SupabaseContext from "./SupabaseContext";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
@@ -46,6 +46,16 @@ const SupabaseProvider = (props) => {
     if (error) throw error;
     setLoggedIn(true);
   }
+
+  const checkUserLogin = async () => {
+    const result = await supabase.auth.getSession();
+    // console.log(result);
+    setLoggedIn(result.data.session !== null); 
+  }
+
+  useEffect(() => {
+    checkUserLogin()
+  }, []);
 
   const getUsers = async () => {
     try {

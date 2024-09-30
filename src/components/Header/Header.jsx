@@ -9,11 +9,12 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
-  const { loggedIn } = useSupabase();
+  const { loggedIn, supabase } = useSupabase();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
   };
+
 
   return (
     <div className="header">
