@@ -5,7 +5,7 @@ import pumpkin from "../../assets/images/pumpkin.jpg";
 import platePumpkin from "../../assets/images/platePumpkinStand.jpg";
 
 const FeatureGallery = () => {
-  const images = [plateStand, pumpkin, platePumpkin, plateStand, pumpkin];
+  const images = [plateStand, pumpkin, platePumpkin, plateStand, pumpkin, pumpkin];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const delay = 3000;
