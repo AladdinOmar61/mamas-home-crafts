@@ -15,6 +15,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        {/* <Route path="products" element={<Products/>}/> */}
       </Routes>
     </Router>
   </SupabaseProvider>
