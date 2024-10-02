@@ -34,11 +34,12 @@
     border: solid black 1px;
     background-color: white;
     color: black;
+    transition: all 0.3s;
 }
 
 .buy-now:hover {
     background: #000;
-    transition: ease-in-out 0.3s;
+    transition: all 0.3s;
     color: white;
 }
 

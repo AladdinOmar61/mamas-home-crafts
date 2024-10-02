@@ -23,7 +23,7 @@ function Header() {
       <Link to="/" className="website-title" style={{ textDecoration: "none" }}>
         Made by Mama
       </Link>
-      <Link className="products">Products</Link>
+      <Link to="/products" className="products">Products</Link>
       </div>
       {loggedIn ? (
         <div className="icons">

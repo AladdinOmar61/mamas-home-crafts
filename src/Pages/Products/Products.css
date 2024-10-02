@@ -1,0 +1,20 @@
+.products-header {
+    margin-top: 7rem;
+}
+
+.product-container {
+    margin: 0 auto;
+}
+
+.product-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.product-item {
+    height: 30rem;
+    width: 30vw;
+    border: solid black 1px;
+}
