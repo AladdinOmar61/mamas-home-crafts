@@ -1,20 +1,17 @@
 .products-header {
     margin-top: 7rem;
-}
-
-.product-container {
-    margin: 0 auto;
+    color: black;
 }
 
 .product-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .product-item {
-    height: 30rem;
-    width: 30vw;
+    height: auto;
+    width: 29%;
     border: solid black 1px;
 }

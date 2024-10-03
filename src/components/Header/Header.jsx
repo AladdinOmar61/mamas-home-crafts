@@ -20,10 +20,14 @@ function Header() {
   return (
     <div className="header">
       <div className="header-nav">
-      <Link to="/" className="website-title" style={{ textDecoration: "none" }}>
-        Made by Mama
-      </Link>
-      <Link to="/products" className="products">Products</Link>
+        <Link to="/" className="website-title">
+          Made by Mama
+        </Link>
+        {loggedIn && (
+          <Link to="/products" className="products">
+            Products
+          </Link>
+        )}
       </div>
       {loggedIn ? (
         <div className="icons">
@@ -86,17 +90,15 @@ function Header() {
               <p>Name of the product</p>
               <p>$59.00</p>
               <div className="cart-item-quantity">
-              <button className="subtract-item">-</button>
-              <p>0</p>
-               <button className="add-item">+</button>
+                <button className="subtract-item">-</button>
+                <p>0</p>
+                <button className="add-item">+</button>
               </div>
               <a href="">remove</a>
             </div>
           </div>
         </div>
-        <button className="checkout">
-          Checkout
-        </button>
+        <button className="checkout">Checkout</button>
       </ReactModal>
     </div>
   );
