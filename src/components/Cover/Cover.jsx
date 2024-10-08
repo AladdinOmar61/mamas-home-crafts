@@ -1,5 +1,6 @@
 import "./Cover.css";
 import tempCover from '../../assets/images/nature.jpg';
+import { Link } from "react-router-dom";
 
 function Cover() {
   return (
@@ -9,7 +10,7 @@ function Cover() {
       <p className="cover-text">
         Hand-crafted home and holiday decor
       </p>
-      <button className="explore-btn">Explore</button>
+      <button className="explore-btn"><Link to="/products" className="explore-link">Explore</Link></button>
       </div>
     </div>
   );

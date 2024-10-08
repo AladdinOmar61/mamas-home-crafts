@@ -11,10 +11,15 @@ import pumpkin from "../../assets/images/pumpkin.jpg";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
+  const [profileOpened, setProfileOpened] = useState(false);
   const { loggedIn } = useSupabase();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
+  };
+
+  const handleProfile = () => {
+    setProfileOpened(!profileOpened);
   };
 
   return (
@@ -37,7 +42,12 @@ function Header() {
             path={mdiCartOutline}
             size={1.5}
           />
-          <Icon className="account" path={mdiAccountOutline} size={1.5} />
+          <Icon
+            className="account"
+            onClick={handleProfile}
+            path={mdiAccountOutline}
+            size={1.5}
+          />
         </div>
       ) : (
         <div className="login-section">
@@ -51,6 +61,11 @@ function Header() {
       )}
       <ReactModal
         contentLabel="Shopping Cart"
+        className={{
+          base: "CartModal",
+          afterOpen: "CartModal--after-open",
+          beforeClose: "CartModal--before-close",
+        }}
         isOpen={cartOpened}
         onRequestClose={handleCart}
         closeTimeoutMS={300}
@@ -70,8 +85,8 @@ function Header() {
             backgroundColor: "white",
             right: 5,
             top: 0,
-            marginRight: 40,
-            width: "460px",
+            marginRight: -5,
+            width: "470px",
             position: "relative",
           },
         }}
@@ -100,6 +115,35 @@ function Header() {
         </div>
         <button className="checkout">Checkout</button>
       </ReactModal>
+      <ReactModal
+        className="ProfileModal"
+        isOpen={profileOpened}
+        onRequestClose={handleProfile}
+        closeTimeoutMS={300}
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "transparent",
+            display: "flex",
+            justifyContent: "flex-end",
+            zIndex: 150,
+          },
+          content: {
+            backgroundColor: "white",
+            right: 5,
+            top: 0,
+            marginRight: 45,
+            width: "460px",
+            position: "relative",
+            height: "30vh",
+            marginTop: "4rem",
+          },
+        }}
+      ></ReactModal>
     </div>
   );
 }
