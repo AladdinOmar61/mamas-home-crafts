@@ -217,13 +217,40 @@
     background-color: white;
 }
 
+.CartModal:focus-visible {
+  border: none;
+}
+
 .CartModal--after-open {
     transform: translateX(0%);
     transition: transform 300ms ease-in-out;
 }
 
+.CartModal--after-open:focus-visible {
+  border: none;
+}
+
 .CartModal--before-close {
     transform: translateX(100%);
+}
+
+.ProfileModal {
+  text-align: center;
+}
+
+.logout-btn {
+  font-family: "Josefin Sans", sans-serif;
+  height: 2rem;
+  width: 4rem;
+  color: black;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  color: white;
+  background-color: black;
+  transition: all 0.3s;
 }
 
 @media screen and (max-width: 600px) {

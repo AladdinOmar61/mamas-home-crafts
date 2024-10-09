@@ -2,6 +2,7 @@ import "./Header.css";
 import Icon from "@mdi/react";
 import { mdiCartOutline } from "@mdi/js";
 import { mdiAccountOutline } from "@mdi/js";
+import { mdiAccountCircle } from '@mdi/js';
 import { useState } from "react";
 import { mdiClose } from "@mdi/js";
 import { Link } from "react-router-dom";
@@ -88,6 +89,7 @@ function Header() {
             marginRight: -5,
             width: "470px",
             position: "relative",
+            outline: "none"
           },
         }}
       >
@@ -139,11 +141,17 @@ function Header() {
             marginRight: 45,
             width: "460px",
             position: "relative",
-            height: "30vh",
-            marginTop: "4rem",
+            height: "25vh",
+            marginTop: "4.2rem",
+            outline: "none",
           },
         }}
-      ></ReactModal>
+      >
+        <Icon path={mdiAccountCircle} size={4} />
+        <h1>Profile</h1>
+        <h3>email@exmaple.com</h3>
+        <button className="logout-btn">Logout</button>
+      </ReactModal>
     </div>
   );
 }
