@@ -13,7 +13,7 @@ import pumpkin from "../../assets/images/pumpkin.jpg";
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
-  const { loggedIn } = useSupabase();
+  const { loggedIn, user } = useSupabase();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
@@ -141,7 +141,7 @@ function Header() {
             marginRight: 45,
             width: "460px",
             position: "relative",
-            height: "25vh",
+            height: "17rem",
             marginTop: "4.2rem",
             outline: "none",
           },
@@ -149,7 +149,7 @@ function Header() {
       >
         <Icon path={mdiAccountCircle} size={4} />
         <h1>Profile</h1>
-        <h3>email@exmaple.com</h3>
+        <h3>{user.email}</h3>
         <button className="logout-btn">Logout</button>
       </ReactModal>
     </div>

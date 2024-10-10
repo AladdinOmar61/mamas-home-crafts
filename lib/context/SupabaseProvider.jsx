@@ -17,6 +17,7 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 const SupabaseProvider = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
 
   const register = async (email, password) => {
     const { error, data } = await supabase.auth.signUp({
@@ -49,9 +50,14 @@ const SupabaseProvider = (props) => {
 
   const checkUserLogin = async () => {
     const result = await supabase.auth.getSession();
-    // console.log(result);
-    setLoggedIn(result.data.session !== null); 
+    // console.log(result.data.session.user.email);
+    setLoggedIn(result.data.session !== null);
+    setUser(result.data.session.user);
   }
+
+  // const getCurrUser = async () => {
+  //   const currUser = await supabase.from("users").select().eq('email', user.email);
+  // }
 
   useEffect(() => {
     checkUserLogin()
@@ -67,7 +73,7 @@ const SupabaseProvider = (props) => {
   };
 
   return (
-    <SupabaseContext.Provider value={{ loggedIn, getUsers, register, login }}>
+    <SupabaseContext.Provider value={{ user, loggedIn, getUsers, register, login }}>
       {props.children}
     </SupabaseContext.Provider>
   );

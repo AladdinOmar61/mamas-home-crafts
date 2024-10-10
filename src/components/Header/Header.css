@@ -245,6 +245,7 @@
   color: black;
   background-color: white;
   transition: all 0.3s;
+  border: solid black 1px;
 }
 
 .logout-btn:hover {
