@@ -2,18 +2,22 @@ import "./Header.css";
 import Icon from "@mdi/react";
 import { mdiCartOutline } from "@mdi/js";
 import { mdiAccountOutline } from "@mdi/js";
-import { mdiAccountCircle } from '@mdi/js';
+import { mdiAccountCircle } from "@mdi/js";
 import { useState } from "react";
 import { mdiClose } from "@mdi/js";
 import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
 import pumpkin from "../../assets/images/pumpkin.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
-  const { loggedIn, user } = useSupabase();
+
+  const { loggedIn, user, logout } = useSupabase();
+
+  const navigate = useNavigate();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
@@ -21,6 +25,15 @@ function Header() {
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
+  };
+
+  const logoutUser = async () => {
+    try {
+    await logout();
+    location.reload()
+    } catch {
+      console.log("failed to sign out")
+    }
   };
 
   return (
@@ -61,6 +74,7 @@ function Header() {
         </div>
       )}
       <ReactModal
+        ariaHideApp={false}
         contentLabel="Shopping Cart"
         className={{
           base: "CartModal",
@@ -89,7 +103,7 @@ function Header() {
             marginRight: -5,
             width: "470px",
             position: "relative",
-            outline: "none"
+            outline: "none",
           },
         }}
       >
@@ -118,6 +132,7 @@ function Header() {
         <button className="checkout">Checkout</button>
       </ReactModal>
       <ReactModal
+        ariaHideApp={false}
         className="ProfileModal"
         isOpen={profileOpened}
         onRequestClose={handleProfile}
@@ -149,8 +164,10 @@ function Header() {
       >
         <Icon path={mdiAccountCircle} size={4} />
         <h1>Profile</h1>
-        <h3>{user.email}</h3>
-        <button className="logout-btn">Logout</button>
+        <h3>{user ? user.email : 'Loading...'}</h3>
+        <button className="logout-btn" onClick={logoutUser}>
+          Logout
+        </button>
       </ReactModal>
     </div>
   );

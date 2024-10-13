@@ -22,14 +22,10 @@ function Login() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    try {
     const loginTheUser = await login(email, password);
-    console.log(loginTheUser);
-    navigate('/');
-    } catch(error) {
-        if (!error.message) return;
-        setError(error.message);
-    }
+    navigate("/");
+    if (!error.message) return;
+    setError(error.message);
   };
 
   return (
@@ -53,9 +49,7 @@ function Login() {
             onChange={handlePassword}
           />
           {/* <input type="password" placeholder="confirm password" /> */}
-          {error &&
-          <p style={{color: 'red'}}>{error}</p>
-          }
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <button className="login-submit" onClick={loginUser}>
             login
           </button>

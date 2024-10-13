@@ -5,18 +5,22 @@ import Header from "../../components/Header/Header.jsx";
 import InfoSection from "../../components/InfoSection/InfoSection.jsx";
 import Cover from "../../components/Cover/Cover.jsx";
 import { useSupabase } from "../../../lib/hooks/useSupabase.js";
+import { useEffect } from "react";
 
 function Home() {
+  const { checkUserLogin } = useSupabase();
 
-  const {supabase} = useSupabase();
+  useEffect(() => {
+    checkUserLogin()
+  }, [])
 
   return (
     <>
       <Header />
-      <Cover/>
+      <Cover />
       <FeatureGallery />
       <InfoBanner />
-      <InfoSection/>
+      <InfoSection />
       <Footer />
     </>
   );

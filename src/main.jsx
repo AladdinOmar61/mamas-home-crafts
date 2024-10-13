@@ -9,7 +9,7 @@ import Login from "./pages/Login/Login.jsx";
 import Products from './Pages/Products/Products.jsx';
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
   <SupabaseProvider>
     <Router>
       <Routes>
@@ -20,5 +20,5 @@ createRoot(document.getElementById("root")).render(
       </Routes>
     </Router>
   </SupabaseProvider>
- </StrictMode>,
+//  {/* </StrictMode>, */}
 );

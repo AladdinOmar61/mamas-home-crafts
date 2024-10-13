@@ -15,9 +15,8 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 });
 
 const SupabaseProvider = (props) => {
-
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   const register = async (email, password) => {
     const { error, data } = await supabase.auth.signUp({
@@ -26,42 +25,59 @@ const SupabaseProvider = (props) => {
     });
     if (error) throw error;
     try {
-      const {error, data: userData } = await supabase
+      const { error, data: userData } = await supabase
         .from("users")
         .insert({ email, uuid: data.user.id });
-        if (error) {
-          console.error(error);
-        } else {
-          console.log("User created successfully", userData);
-        }
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("User created successfully", userData);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   const login = async (email, password) => {
-    const {error} = await supabase.auth.signInWithPassword({
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      console.error("Error signing out:", signOutError);
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      password
-    })
+      password,
+    });
     if (error) throw error;
     setLoggedIn(true);
-  }
+  };
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    // setLoggedIn(result.data.session !== null);
+    if (error) {
+      console.log(error);
+    }
+    setLoggedIn(false);
+    setUser(null);
+  };
 
   const checkUserLogin = async () => {
     const result = await supabase.auth.getSession();
     // console.log(result.data.session.user.email);
     setLoggedIn(result.data.session !== null);
     setUser(result.data.session.user);
-  }
+    console.log(user);
+  };
 
   // const getCurrUser = async () => {
   //   const currUser = await supabase.from("users").select().eq('email', user.email);
   // }
 
   useEffect(() => {
-    checkUserLogin()
-  }, []);
+    checkUserLogin();
+  }, [user]);
 
   const getUsers = async () => {
     try {
@@ -73,7 +89,9 @@ const SupabaseProvider = (props) => {
   };
 
   return (
-    <SupabaseContext.Provider value={{ user, loggedIn, getUsers, register, login }}>
+    <SupabaseContext.Provider
+      value={{ user, loggedIn, getUsers, register, login, logout, checkUserLogin }}
+    >
       {props.children}
     </SupabaseContext.Provider>
   );
