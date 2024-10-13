@@ -80,10 +80,6 @@ const SupabaseProvider = (props) => {
     // console.log(user);
   };
 
-  useEffect(() => {
-    checkUserLogin();
-  }, [user]);
-
   const getUsers = async () => {
     try {
       const users = await supabase.from("users").select("*");

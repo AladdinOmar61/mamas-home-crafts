@@ -31,6 +31,7 @@ function Register() {
   const loginAsGuest = async (e) => {
     e.preventDefault();
     const guest = await guestLogin();
+    navigate("/")
     console.log(guest);
   };
 
