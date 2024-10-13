@@ -53,6 +53,15 @@ const SupabaseProvider = (props) => {
     setLoggedIn(true);
   };
 
+  const guestLogin = async () => {
+    const { data, error } = await supabase.auth.signInAnonymously();
+    console.log(data.user.email);
+    setLoggedIn(true);
+    if (error) {
+      console.log(error);
+    }
+  };
+
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
     // setLoggedIn(result.data.session !== null);
@@ -68,12 +77,8 @@ const SupabaseProvider = (props) => {
     // console.log(result.data.session.user.email);
     setLoggedIn(result.data.session !== null);
     setUser(result.data.session.user);
-    console.log(user);
+    // console.log(user);
   };
-
-  // const getCurrUser = async () => {
-  //   const currUser = await supabase.from("users").select().eq('email', user.email);
-  // }
 
   useEffect(() => {
     checkUserLogin();
@@ -90,7 +95,16 @@ const SupabaseProvider = (props) => {
 
   return (
     <SupabaseContext.Provider
-      value={{ user, loggedIn, getUsers, register, login, logout, checkUserLogin }}
+      value={{
+        user,
+        loggedIn,
+        getUsers,
+        register,
+        login,
+        logout,
+        checkUserLogin,
+        guestLogin,
+      }}
     >
       {props.children}
     </SupabaseContext.Provider>

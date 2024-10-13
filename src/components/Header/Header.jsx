@@ -9,15 +9,12 @@ import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
 import pumpkin from "../../assets/images/pumpkin.jpg";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
 
   const { loggedIn, user, logout } = useSupabase();
-
-  const navigate = useNavigate();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
@@ -29,10 +26,10 @@ function Header() {
 
   const logoutUser = async () => {
     try {
-    await logout();
-    location.reload()
+      await logout();
+      location.reload();
     } catch {
-      console.log("failed to sign out")
+      console.log("failed to sign out");
     }
   };
 
@@ -42,11 +39,9 @@ function Header() {
         <Link to="/" className="website-title">
           Made by Mama
         </Link>
-        {loggedIn && (
-          <Link to="/products" className="products">
-            Products
-          </Link>
-        )}
+        <Link to="/products" className="products">
+          Products
+        </Link>
       </div>
       {loggedIn ? (
         <div className="icons">
@@ -164,7 +159,7 @@ function Header() {
       >
         <Icon path={mdiAccountCircle} size={4} />
         <h1>Profile</h1>
-        <h3>{user ? user.email : 'Loading...'}</h3>
+        <h3>{user ? user.email : "Loading..."}</h3>
         <button className="logout-btn" onClick={logoutUser}>
           Logout
         </button>
