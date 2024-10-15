@@ -8,10 +8,12 @@ import { useSupabase } from "../../../lib/hooks/useSupabase.js";
 import { useEffect } from "react";
 
 function Home() {
-  const { checkUserLogin } = useSupabase();
+  const { loggedIn, checkUserLogin } = useSupabase();
 
   useEffect(() => {
+    if (loggedIn === true) {
     checkUserLogin()
+    }
   }, [])
 
   return (

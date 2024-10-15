@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import SupabaseContext from "./SupabaseContext";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;

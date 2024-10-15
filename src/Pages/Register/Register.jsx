@@ -9,29 +9,38 @@ function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
+    setError("");
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    setError("");
   };
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const userRegistration = await register(email, password);
-    navigate("/login");
-    if (!error.message) return;
-    setError(error.message);
+    try {
+      await register(email, password);
+      setLoginSuccess(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const loginAsGuest = async (e) => {
     e.preventDefault();
     const guest = await guestLogin();
-    navigate("/")
+    navigate("/");
     console.log(guest);
   };
 
@@ -56,6 +65,12 @@ function Register() {
             onChange={handlePassword}
           />
           {/* <input type="password" placeholder="confirm password" /> */}
+          {error !== "" && <p style={{ color: "red" }}>{error}</p>}
+          {loginSuccess === true && (
+            <p style={{ color: "green" }}>
+              Logged in successfully. Redirecting to login screen
+            </p>
+          )}
           <button className="register-submit" onClick={registerUser}>
             register
           </button>
