@@ -53,6 +53,8 @@ const SupabaseProvider = (props) => {
     setLoggedIn(true);
   };
 
+
+  // for guest login, look into deleting guest user on guest logout
   const guestLogin = async () => {
     const { data, error } = await supabase.auth.signInAnonymously();
     console.log(data.user.email);

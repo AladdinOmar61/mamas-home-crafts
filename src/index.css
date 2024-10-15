@@ -14,13 +14,14 @@ html, body {
 }
 
 :root {
+  overscroll-behavior: none;
   font-family: "Josefin Sans", sans-serif;
   line-height: 1;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #2ED14B;
+  /* background-color: #2ED14B; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

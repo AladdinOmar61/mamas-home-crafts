@@ -160,7 +160,6 @@ function Header() {
         <Icon path={mdiAccountCircle} size={4} />
         <h1>Profile</h1>
         <h3>{user ? user.email === "" ? "Logged in as Guest" : user.email : "Loading..."}</h3>
-        {console.log(user)}
         <button className="logout-btn" onClick={logoutUser}>
           Logout
         </button>
