@@ -23,6 +23,8 @@
     min-width: 33.3%;
     height: auto;
     padding: 0.03%;
+    object-fit: cover;
+    background-size: cover;
   }
   
   .prev,

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const { register, guestLogin } = useSupabase();
+  const { register } = useSupabase();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,12 +37,12 @@ function Register() {
     }
   };
 
-  const loginAsGuest = async (e) => {
-    e.preventDefault();
-    const guest = await guestLogin();
-    navigate("/");
-    console.log(guest);
-  };
+  // const loginAsGuest = async (e) => {
+  //   e.preventDefault();
+  //   const guest = await guestLogin();
+  //   navigate("/");
+  //   console.log(guest);
+  // };
 
   return (
     <>
@@ -74,12 +74,12 @@ function Register() {
           <button className="register-submit" onClick={registerUser}>
             register
           </button>
-          <p>
+          {/* <p>
             or
             <button onClick={loginAsGuest} className="guest-login">
               continue as a guest
-            </button>{" "}
-          </p>
+            </button>
+          </p> */}
         </form>
       </div>
     </>

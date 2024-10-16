@@ -3,9 +3,10 @@ import "./FeatureGallery.css";
 import plateStand from "../../assets/images/plateOnStand.jpg";
 import pumpkin from "../../assets/images/pumpkin.jpg";
 import platePumpkin from "../../assets/images/platePumpkinStand.jpg";
+import skeletons from "../../assets/images/01104802.jpg";
 
 const FeatureGallery = () => {
-  const images = [plateStand, pumpkin, platePumpkin, plateStand, pumpkin, pumpkin];
+  const images = [skeletons, plateStand, pumpkin, platePumpkin, plateStand, pumpkin];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const delay = 3000;

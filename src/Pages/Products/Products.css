@@ -13,5 +13,6 @@
 .product-item {
     height: auto;
     width: 29%;
+    object-fit: cover;
     border: solid black 1px;
 }

@@ -166,7 +166,7 @@
   justify-content: space-around;
 }
 
-.register {
+/* .register {
   cursor: pointer;
   color: black;
   padding: 0.5rem 0 0.5rem 0;
@@ -194,7 +194,7 @@
   border-bottom: solid black 2px;
   transition: all 0.3s;
   color: black;
-}
+} */
 
 .ReactModal__Overlay {
     opacity: 0;
@@ -236,6 +236,33 @@
 
 .ProfileModal {
   text-align: center;
+}
+
+.login-btn {
+  font-family: "Josefin Sans", sans-serif;
+  height: 2rem;
+  width: 4rem;
+  color: black;
+  background-color: white;
+  transition: all 0.3s;
+  border: solid black 1px;
+}
+
+.login-btn:hover {
+  color: white;
+  background-color: black;
+  transition: all 0.3s;
+}
+
+.login-btn > a {
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s;
+}
+
+.login-btn > a:hover {
+  color: white;
+  transition: all 0.3s;
 }
 
 .logout-btn {

@@ -54,15 +54,14 @@ const SupabaseProvider = (props) => {
   };
 
 
-  // for guest login, look into deleting guest user on guest logout
-  const guestLogin = async () => {
-    const { data, error } = await supabase.auth.signInAnonymously();
-    console.log(data.user.email);
-    setLoggedIn(true);
-    if (error) {
-      console.log(error);
-    }
-  };
+  // const guestLogin = async () => {
+  //   const { data, error } = await supabase.auth.signInAnonymously();
+  //   console.log(data.user.email);
+  //   setLoggedIn(true);
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -91,6 +90,15 @@ const SupabaseProvider = (props) => {
     }
   };
 
+  const getAllProducts = async () => {
+    try {
+      const allProducts = await supabase.from("products").select("*");
+      return allProducts;
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <SupabaseContext.Provider
       value={{
@@ -101,7 +109,8 @@ const SupabaseProvider = (props) => {
         login,
         logout,
         checkUserLogin,
-        guestLogin,
+        getAllProducts,
+        // guestLogin,
       }}
     >
       {props.children}

@@ -14,7 +14,7 @@ function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
 
-  const { loggedIn, user, logout } = useSupabase();
+  const { user, logout } = useSupabase();
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
@@ -43,31 +43,30 @@ function Header() {
           Products
         </Link>
       </div>
-      {loggedIn ? (
-        <div className="icons">
-          <Icon
-            className="cart"
-            onClick={handleCart}
-            path={mdiCartOutline}
-            size={1.5}
-          />
-          <Icon
-            className="account"
-            onClick={handleProfile}
-            path={mdiAccountOutline}
-            size={1.5}
-          />
-        </div>
-      ) : (
-        <div className="login-section">
+      <div className="icons">
+        <Icon
+          className="cart"
+          onClick={handleCart}
+          path={mdiCartOutline}
+          size={1.5}
+        />
+        <Icon
+          className="account"
+          onClick={handleProfile}
+          path={mdiAccountOutline}
+          size={1.5}
+        />
+      </div>
+      {/* // ) : ( */}
+      {/* <div className="login-section">
           <Link className="register" to="/register">
             Register
           </Link>
           <Link className="login" to="/login">
             Login
           </Link>
-        </div>
-      )}
+        </div> */}
+      {/* // )} */}
       <ReactModal
         ariaHideApp={false}
         contentLabel="Shopping Cart"
@@ -159,10 +158,16 @@ function Header() {
       >
         <Icon path={mdiAccountCircle} size={4} />
         <h1>Profile</h1>
-        <h3>{user ? user.email === "" ? "Logged in as Guest" : user.email : "Loading..."}</h3>
-        <button className="logout-btn" onClick={logoutUser}>
-          Logout
-        </button>
+        <h3>{user ? user.email : "Logged in as Guest"}</h3>
+        {user ? (
+          <button className="logout-btn" onClick={logoutUser}>
+            Logout
+          </button>
+        ) : (
+          <button className="login-btn">
+            <Link to="/login" className="">Login</Link>
+          </button>
+        )}
       </ReactModal>
     </div>
   );
