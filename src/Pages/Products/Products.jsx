@@ -20,28 +20,31 @@ function Products() {
     pumpkin,
   ];
 
+  const getAllProds = async () => {
+    let allProds = await getAllProducts();
+    let prodsBucket = [];
+    console.log(allProds.data)
+    for (let i = 0; i < allProds.data.length; i++) {
+      console.log(allProds.data[i].Images[0])
+      prodsBucket.push(allProds.data[i].Images[0])
+    }
+    setProdImgs(prodsBucket);
+  };
+  
   useEffect(() => {
-    // getAllProducts();
-    const getAllProds = async () => {
-      let allProds = await getAllProducts();
-      console.log(allProds.data)
-      for (let i = 0; i < allProds.data.length-1; i++) {
-        console.log(allProds.data[i].Images[0])
-        // setProdImgs(...allProds.data[i].images[0])
-      }
-    };
     getAllProds();
   }, [])
 
-  console.log(prodImgs);
+  // console.log(prodImgs);
 
   return (
     <div className="products-page">
       <Header />
       <h1 className="products-header">Products</h1>
       <div className="product-gallery">
-        {Prodimages.map((img, index) => (
-          <img key={index} className="product-item" src={img} />
+        {prodImgs.map((prod, index) => 
+        (
+          <img key={index} className="product-item" src={prod} />
         ))}
       </div>
     </div>

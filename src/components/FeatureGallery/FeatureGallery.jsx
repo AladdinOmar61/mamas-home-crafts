@@ -27,6 +27,7 @@ const FeatureGallery = () => {
   };
 
   useEffect(() => {
+    
     const interval = setInterval(goToNext, delay);
     return () => clearInterval(interval);
   }, [currentIndex]);
