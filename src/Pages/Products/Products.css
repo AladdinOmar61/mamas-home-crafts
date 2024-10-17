@@ -5,14 +5,21 @@
 
 .product-gallery {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
 }
 
-.product-item {
-    height: auto;
-    width: 29%;
-    object-fit: cover;
+.product-items {
     border: solid black 1px;
+    width: 29%;
+    height: auto;
+}
+
+.product-item {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-size: contain;
 }

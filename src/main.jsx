@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+// import { StrictMode } from 'react'
 import "./index.css";
 import { createRoot } from "react-dom/client";
 import { SupabaseProvider } from "../lib/context/supabaseProvider";
