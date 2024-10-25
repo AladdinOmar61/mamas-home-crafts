@@ -27,8 +27,8 @@ function Products() {
     let prodsBucket = [];
     console.log(allProds.data)
     for (let i = 0; i < allProds.data.length; i++) {
-      console.log(allProds.data[i].Images[0])
-      prodsBucket.push(allProds.data[i].Images[0])
+      console.log(allProds.data[i])
+      prodsBucket.push(allProds.data[i])
     }
     setProdImgs(prodsBucket);
     setLoading(true);
@@ -46,11 +46,11 @@ function Products() {
       <h1 className="products-header">Products</h1>
       <div className="product-gallery">
         {loading === true ? (
-        prodImgs.map((prod, index) => 
+        prodImgs.map((prod) => 
         (
           // <img key={index} className="product-item" src={prod} ></img>
-          <Link to="/products/:prodId" key={index} className="product-items">
-            <img className="product-item" src={prod}></img>
+          <Link to={`/products/${prod.id}`} key={prod.id} className="product-items">
+            <img className="product-item" src={prod.Images[0]} ></img>
           </Link>
         ))
       ) : (

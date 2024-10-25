@@ -53,16 +53,6 @@ const SupabaseProvider = (props) => {
     setLoggedIn(true);
   };
 
-
-  // const guestLogin = async () => {
-  //   const { data, error } = await supabase.auth.signInAnonymously();
-  //   console.log(data.user.email);
-  //   setLoggedIn(true);
-  //   if (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
     // setLoggedIn(result.data.session !== null);
@@ -75,10 +65,8 @@ const SupabaseProvider = (props) => {
 
   const checkUserLogin = async () => {
     const result = await supabase.auth.getSession();
-    // console.log(result.data.session.user.email);
     setLoggedIn(result.data.session !== null);
     setUser(result.data.session.user);
-    // console.log(user);
   };
 
   const getUsers = async () => {
@@ -99,6 +87,15 @@ const SupabaseProvider = (props) => {
     }
   }
 
+  const getProductItem = async (id) => {
+    try {
+      const prodItem = await supabase.from("products").select().eq("id", id);
+      return prodItem;
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   return (
     <SupabaseContext.Provider
       value={{
@@ -110,7 +107,7 @@ const SupabaseProvider = (props) => {
         logout,
         checkUserLogin,
         getAllProducts,
-        // guestLogin,
+        getProductItem
       }}
     >
       {props.children}
