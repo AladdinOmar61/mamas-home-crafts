@@ -22,10 +22,12 @@ function Login() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    const loginTheUser = await login(email, password);
-    navigate("/");
-    if (!error.message) return;
-    setError(error.message);
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (

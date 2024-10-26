@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import "./ProductItem.css";
 
 function ProductItem() {
   const prodId = useParams();
   const { getProductItem } = useSupabase();
-  const [prodName, setProdName] = useState({});
+  const [prod, setProd] = useState({});
 
   const productItem = async () => {
     const getProdItem = await getProductItem(prodId.prodId);
     console.log("prod item: " + JSON.stringify(getProdItem));
-    setProdName(getProdItem);
+    console.log(JSON.stringify(getProdItem.data[0]));
+    setProd(getProdItem.data[0]);
   };
-
-  console.log(prodName.data[0]);
 
   useEffect(() => {
     productItem();
@@ -23,7 +23,10 @@ function ProductItem() {
   return (
     <>
       <Header />
-      <h1>{prodName.data ? prodName.data[0].name : "None"}</h1>
+      <div className="single-product">
+        <h1>{prod.name}</h1>
+        <img src={prod.Images[0]} alt={prod.name} />
+      </div>
     </>
   );
 }
