@@ -1,3 +1,12 @@
 .single-product {
     margin-top: 10rem;
 }
+
+.single-product-imgs {
+    width: 20rem;
+    
+}
+
+.product-img {
+    width: inherit;
+}
