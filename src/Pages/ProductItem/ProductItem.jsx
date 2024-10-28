@@ -25,12 +25,22 @@ function ProductItem() {
       <Header />
       <div className="single-product">
         <h1>{prod.name}</h1>
+        <div className="single-product-info">
         <div className="single-product-imgs">
           {prod.Images && prod.Images.length > 0 ? (
             <img className="product-img" src={prod.Images[0]} alt={prod.name} />
           ) : (
             "Loading..."
           )}
+        </div>
+        <div className="single-product-desc-section">
+            <h3>Description</h3>
+            <p>{prod.description}</p>
+            <h3>Price</h3>
+            <p>{prod.price}</p>
+            <button className="purchase-btn">Purchase</button>
+            <button className="add-cart-btn">Add to cart</button>
+        </div>
         </div>
       </div>
     </>
