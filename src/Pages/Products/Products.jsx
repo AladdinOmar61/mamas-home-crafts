@@ -50,7 +50,7 @@ function Products() {
         (
           // <img key={index} className="product-item" src={prod} ></img>
           <Link to={`/products/${prod.id}`} key={prod.id} className="product-items">
-            <img className="product-item" src={prod.Images[0]} ></img>
+            <img className="product-item" src={prod.images[0]} ></img>
           </Link>
         ))
       ) : (

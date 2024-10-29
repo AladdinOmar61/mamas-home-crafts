@@ -157,8 +157,7 @@ function Header() {
         }}
       >
         <Icon path={mdiAccountCircle} size={4} />
-        <h1>Profile</h1>
-        <h3>{user ? user.email : "Logged in as Guest"}</h3>
+        <h1>{user ? user.email : "Guest"}</h1>
         {user ? (
           <button className="logout-btn" onClick={logoutUser}>
             Logout
