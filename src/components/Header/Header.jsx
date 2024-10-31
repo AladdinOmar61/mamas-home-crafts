@@ -9,10 +9,14 @@ import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
 import pumpkin from "../../assets/images/pumpkin.jpg";
+import { useWindowSize } from "@uidotdev/usehooks";
+import { mdiMenu } from "@mdi/js";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
+
+  const size = useWindowSize();
 
   const { user, logout } = useSupabase();
 
@@ -35,38 +39,53 @@ function Header() {
 
   return (
     <div className="header">
-      <div className="header-nav">
-        <Link to="/" className="website-title">
-          Made by Mama
-        </Link>
-        <Link to="/products" className="products">
-          Products
-        </Link>
-      </div>
-      <div className="icons">
-        <Icon
-          className="cart"
-          onClick={handleCart}
-          path={mdiCartOutline}
-          size={1.5}
-        />
-        <Icon
-          className="account"
-          onClick={handleProfile}
-          path={mdiAccountOutline}
-          size={1.5}
-        />
-      </div>
-      {/* // ) : ( */}
-      {/* <div className="login-section">
-          <Link className="register" to="/register">
-            Register
+      {size.width >= 900 ? (
+        <div className="header-nav">
+          <Link to="/" className="website-title">
+            Made by Mama
           </Link>
-          <Link className="login" to="/login">
-            Login
+          <Link to="/products" className="products">
+            Products
           </Link>
-        </div> */}
-      {/* // )} */}
+
+          <div className="icons">
+            <Icon
+              className="cart"
+              onClick={handleCart}
+              path={mdiCartOutline}
+              size={1.5}
+            />
+            <Icon
+              className="account"
+              onClick={handleProfile}
+              path={mdiAccountOutline}
+              size={1.5}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="mobile-header-nav">
+          <Icon path={mdiMenu} size={1.5} />
+          <Link to="/" className="website-title">
+            Made by Mama
+          </Link>
+
+          <div className="icons">
+            <Icon
+              className="cart"
+              onClick={handleCart}
+              path={mdiCartOutline}
+              size={1.5}
+            />
+            <Icon
+              className="account"
+              onClick={handleProfile}
+              path={mdiAccountOutline}
+              size={1.5}
+            />
+          </div>
+        </div>
+      )}
       <ReactModal
         ariaHideApp={false}
         contentLabel="Shopping Cart"
@@ -164,7 +183,9 @@ function Header() {
           </button>
         ) : (
           <button className="login-btn">
-            <Link to="/login" className="">Login</Link>
+            <Link to="/login" className="">
+              Login
+            </Link>
           </button>
         )}
       </ReactModal>

@@ -1,6 +1,8 @@
 .header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0rem 3rem;
+  box-sizing: border-box;
   align-items: center;
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -16,7 +18,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  gap: 3rem;
+  gap: 2rem;
+}
+
+.mobile-header-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .products {
@@ -24,6 +33,7 @@
   color: black;
   border-bottom: solid transparent 2px;
   transition: all 0.3s;
+  margin-top: 5px;
 }
 
 .products:hover {
@@ -34,7 +44,7 @@
 
 .website-title {
   color: black;
-  font-size: 3.2em;
+  font-size: 3em;
   white-space: nowrap;
   text-decoration: none;
 }
@@ -166,36 +176,6 @@
   justify-content: space-around;
 }
 
-/* .register {
-  cursor: pointer;
-  color: black;
-  padding: 0.5rem 0 0.5rem 0;
-  border-bottom: solid transparent 2px;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.register:hover {
-  border-bottom: solid black 2px;
-  color: black;
-  transition: all 0.3s;
-}
-
-.login {
-  color: black;
-  cursor: pointer;
-  padding: 0.5rem 0 0.5rem 0;
-  border-bottom: solid transparent 2px;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.login:hover {
-  border-bottom: solid black 2px;
-  transition: all 0.3s;
-  color: black;
-} */
-
 .ReactModal__Overlay {
     opacity: 0;
     transition: opacity 300ms ease-in-out;
@@ -281,14 +261,35 @@
   transition: all 0.3s;
 }
 
+/* @media screen and (max-width: 900px) {
+
+}
+
+@media screen and (max-width: 768px) {
+  .website-title {
+    font-size: 2em;
+  }
+  .products {
+    font-size: 0.9rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .website-title {
     font-size: 2em;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 425px) {
+  .header-nav {
+    gap: 1rem;
+  }
+
   .website-title {
     font-size: 1.5em;
   }
-}
+
+  .products {
+    font-size: 0.8rem;
+  } */
+/* } */

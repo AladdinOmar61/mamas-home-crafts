@@ -44,7 +44,7 @@
   opacity: 1;
   transition: all 0.3s;
   animation-duration: 5s;
-  animation-name: shift;
+  /* animation-name: shift; */
 }
 
 .info-icon {

@@ -45,14 +45,10 @@ function InfoSection() {
       ) : (
         <div className="info-section">
           {icons.map((icon, index) => (
-            <div
-              key={index}
-              className="info-bit"
-              style={{ color: "white" }}
-            >
+            <div key={index} className="info-bit" style={{ color: "white" }}>
               <Icon path={icon.name} size={2} className="info-icon" />
               <div className="info-text-container">
-              <p className="info-text">{icon.msg}</p>
+                <p className="info-text">{icon.msg}</p>
               </div>
             </div>
           ))}
