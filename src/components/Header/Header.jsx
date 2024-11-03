@@ -1,20 +1,23 @@
 import "./Header.css";
 import Icon from "@mdi/react";
-import { mdiCartOutline } from "@mdi/js";
-import { mdiAccountOutline } from "@mdi/js";
-import { mdiAccountCircle } from "@mdi/js";
-import { useState } from "react";
-import { mdiClose } from "@mdi/js";
+import {
+  mdiCartOutline,
+  mdiAccountOutline,
+  mdiAccountCircle,
+  mdiMenu,
+  mdiClose,
+} from "@mdi/js";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
 import pumpkin from "../../assets/images/pumpkin.jpg";
 import { useWindowSize } from "@uidotdev/usehooks";
-import { mdiMenu } from "@mdi/js";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
+  const profileRef = useRef(null);
 
   const size = useWindowSize();
 
@@ -37,17 +40,36 @@ function Header() {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpened(!profileOpened);
+      }
+    };
+
+    if (profileOpened) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileOpened]);
+
   return (
     <div className="header">
       {size.width >= 900 ? (
         <div className="header-nav">
-          <Link to="/" className="website-title">
-            Made by Mama
-          </Link>
-          <Link to="/products" className="products">
-            Products
-          </Link>
-
+          <div className="header-subnav">
+            <Link to="/" className="website-title">
+              Made by Mama
+            </Link>
+            <Link to="/products" className="products">
+              Products
+            </Link>
+          </div>
           <div className="icons">
             <Icon
               className="cart"
@@ -55,12 +77,31 @@ function Header() {
               path={mdiCartOutline}
               size={1.5}
             />
-            <Icon
-              className="account"
-              onClick={handleProfile}
-              path={mdiAccountOutline}
-              size={1.5}
-            />
+            <div className="profile-container" ref={profileRef}>
+              <Icon
+                className="account"
+                onClick={handleProfile}
+                path={mdiAccountOutline}
+                size={1.5}
+              />
+              {profileOpened && (
+                <div className="ProfileModal">
+                  <Icon path={mdiAccountCircle} size={4} />
+                  <h1>{user ? user.email : "Guest"}</h1>
+                  {user ? (
+                    <button className="logout-btn" onClick={logoutUser}>
+                      Logout
+                    </button>
+                  ) : (
+                    <button className="login-btn">
+                      <Link to="/login" className="">
+                        Login
+                      </Link>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : (
@@ -143,51 +184,6 @@ function Header() {
           </div>
         </div>
         <button className="checkout">Checkout</button>
-      </ReactModal>
-      <ReactModal
-        ariaHideApp={false}
-        className="ProfileModal"
-        isOpen={profileOpened}
-        onRequestClose={handleProfile}
-        closeTimeoutMS={300}
-        style={{
-          overlay: {
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "transparent",
-            display: "flex",
-            justifyContent: "flex-end",
-            zIndex: 150,
-          },
-          content: {
-            backgroundColor: "white",
-            right: 5,
-            top: 0,
-            marginRight: 45,
-            width: "460px",
-            position: "relative",
-            height: "17rem",
-            marginTop: "4.2rem",
-            outline: "none",
-          },
-        }}
-      >
-        <Icon path={mdiAccountCircle} size={4} />
-        <h1>{user ? user.email : "Guest"}</h1>
-        {user ? (
-          <button className="logout-btn" onClick={logoutUser}>
-            Logout
-          </button>
-        ) : (
-          <button className="login-btn">
-            <Link to="/login" className="">
-              Login
-            </Link>
-          </button>
-        )}
       </ReactModal>
     </div>
   );

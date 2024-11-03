@@ -1,8 +1,4 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0rem 3rem;
-  box-sizing: border-box;
   align-items: center;
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -17,7 +13,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.header-subnav {
+  display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -176,20 +178,6 @@
   justify-content: space-around;
 }
 
-.ReactModal__Overlay {
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;
-}
-
-.ReactModal__Overlay--after-open{
-    opacity: 1;
-    transition: opacity 300ms ease-in-out;
-}
-
-.ReactModal__Overlay--before-close{
-    opacity: 0;
-}
-
 
 .CartModal {
     transform: translateX(100%);
@@ -214,8 +202,42 @@
     transform: translateX(100%);
 }
 
+.profile-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .ProfileModal {
-  text-align: center;
+  background-color: white;
+  width: 460px;
+  position: absolute;
+  top: 3.7rem;
+  right: -13rem;
+  height: 15rem;
+  outline: none;
+  transition: all 0.3s;
+  animation-name: profileFadeIn;
+  animation-duration: 0.2s;
+}
+
+@keyframes profileFadeIn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .login-btn {
@@ -260,36 +282,3 @@
   background-color: black;
   transition: all 0.3s;
 }
-
-/* @media screen and (max-width: 900px) {
-
-}
-
-@media screen and (max-width: 768px) {
-  .website-title {
-    font-size: 2em;
-  }
-  .products {
-    font-size: 0.9rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .website-title {
-    font-size: 2em;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .header-nav {
-    gap: 1rem;
-  }
-
-  .website-title {
-    font-size: 1.5em;
-  }
-
-  .products {
-    font-size: 0.8rem;
-  } */
-/* } */
