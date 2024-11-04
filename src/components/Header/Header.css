@@ -220,6 +220,7 @@
   transition: all 0.3s;
   animation-name: profileFadeIn;
   animation-duration: 0.2s;
+  border: solid black 1px;
 }
 
 @keyframes profileFadeIn {

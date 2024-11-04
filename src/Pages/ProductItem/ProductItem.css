@@ -36,7 +36,12 @@
 
 .single-product-desc-section {
     width: 30rem;
-    border: solid black 1px;
+    /* border: solid black 1px; */
+}
+
+.purchase-container {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .purchase-btn {
