@@ -13,6 +13,7 @@ function Products() {
   const [prodImgs, setProdImgs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hoveredProd, setHoveredProd] = useState(false);
+  const [count, setCount] = useState(0);
 
   const handleMouseEnter = (id) => {
     setHoveredProd(id);
@@ -21,6 +22,12 @@ function Products() {
   const handleMouseLeave = () => {
     setHoveredProd(null);
   };
+
+  const countUp = () => {
+    setCount(prev => prev + 1);
+    const test = sessionStorage.setItem("count", "countValue");
+    console.log(test);
+  }
 
   // const Prodimages = [
   //   skeletons,
@@ -44,6 +51,7 @@ function Products() {
   };
 
   useEffect(() => {
+    setCount(sessionStorage.getItem("count", count));
     getAllProds();
   }, []);
 
@@ -51,6 +59,8 @@ function Products() {
     <div className="products-page">
       <Header />
       <h1 className="products-header">Products</h1>
+      <p>Counter: {count}</p>
+      <button onClick={countUp}>Increase</button>
       <div className="product-gallery">
         {loading === true ? (
           prodImgs.map((prod) => (
