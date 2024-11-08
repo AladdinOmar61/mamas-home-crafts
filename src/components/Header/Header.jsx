@@ -191,7 +191,7 @@ function Header() {
               </div>
             ))
           ) : (
-            <p>No items in the cart</p>
+            <p style={{textAlign: "center"}}>No items in the cart</p>
           )}
         </div>
         <button className="checkout">Checkout</button>
