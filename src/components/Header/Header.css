@@ -121,12 +121,14 @@
 .cart-item {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 2rem;
 }
 
 .cart-item-img {
   height: 8rem;
   width: 8rem;
   border: solid black 1px;
+  object-fit: cover;
   aspect-ratio: 10rem/7rem;
 }
 
@@ -142,6 +144,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 0.6rem;
 }
 
 .add-item {

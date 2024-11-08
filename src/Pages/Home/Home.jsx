@@ -6,6 +6,7 @@ import InfoSection from "../../components/InfoSection/InfoSection.jsx";
 import Cover from "../../components/Cover/Cover.jsx";
 import { useSupabase } from "../../../lib/hooks/useSupabase.js";
 import { useEffect } from "react";
+import Layout from "../../Layouts/Header_Footer.jsx";
 
 function Home() {
   const { loggedIn, checkUserLogin } = useSupabase();
@@ -17,14 +18,12 @@ function Home() {
   }, [])
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Cover />
       <FeatureGallery />
       <InfoBanner />
       <InfoSection />
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

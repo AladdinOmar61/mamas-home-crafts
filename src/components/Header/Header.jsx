@@ -11,12 +11,13 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
-import pumpkin from "../../assets/images/pumpkin.jpg";
+// import pumpkin from "../../assets/images/pumpkin.jpg";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
+  const [cart, setCart] = useState([]);
   const profileRef = useRef(null);
 
   const size = useWindowSize();
@@ -41,6 +42,10 @@ function Header() {
   };
 
   useEffect(() => {
+    const cartArr = JSON.parse(sessionStorage.getItem("products"));
+    console.log(cartArr);
+    setCart(cartArr);
+
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setProfileOpened(!profileOpened);
@@ -165,23 +170,29 @@ function Header() {
         <h1 className="cart-header">Shopping Cart</h1>
         <hr className="cart-divider" />
         <div className="cart-item-list">
-          <div className="cart-item">
-            <img
-              className="cart-item-img"
-              src={pumpkin}
-              alt="shopping cart item"
-            />
-            <div className="cart-item-info">
-              <p>Name of the product</p>
-              <p>$59.00</p>
-              <div className="cart-item-quantity">
-                <button className="subtract-item">-</button>
-                <p>0</p>
-                <button className="add-item">+</button>
+          {cart && cart.length > 0 ? (
+            cart.map((item, index) => (
+              <div className="cart-item" key={index}>
+                <img
+                  className="cart-item-img"
+                  src={item.images[0]}
+                  alt="shopping cart item"
+                />
+                <div className="cart-item-info">
+                  <p>{item.name}</p>
+                  <p>{item.price}</p>
+                  <div className="cart-item-quantity">
+                    <button className="subtract-item">-</button>
+                    <p>0</p>
+                    <button className="add-item">+</button>
+                  </div>
+                  <a href="">remove</a>
+                </div>
               </div>
-              <a href="">remove</a>
-            </div>
-          </div>
+            ))
+          ) : (
+            <p>No items in the cart</p>
+          )}
         </div>
         <button className="checkout">Checkout</button>
       </ReactModal>

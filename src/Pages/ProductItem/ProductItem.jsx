@@ -16,6 +16,13 @@ function ProductItem() {
     setCurrImg(getProdItem.data[0].images[0]);
   };
 
+  const addToCart = () => {
+    const prodsToCart = JSON.parse(sessionStorage.getItem("products")) || [];
+    const updatedProdCart = [...prodsToCart, prod]
+    sessionStorage.setItem("products", JSON.stringify(updatedProdCart));
+    console.log(updatedProdCart);
+  }
+
   useEffect(() => {
     productItem();
   }, [prodId]);
@@ -50,7 +57,7 @@ function ProductItem() {
             <p>{prod.stock}</p>
             <div className="purchase-container">
               <button className="purchase-btn">Purchase</button>
-              <button className="add-cart-btn">Add to cart</button>
+              <button className="add-cart-btn" onClick={addToCart}>Add to cart</button>
             </div>
           </div>
         </div>

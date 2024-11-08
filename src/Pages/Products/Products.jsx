@@ -1,5 +1,5 @@
 import "./Products.css";
-import Header from "../../components/Header/Header";
+// import Header from "../../components/Header/Header";
 // import plateStand from "../../assets/images/plateOnStand.jpg";
 // import pumpkin from "../../assets/images/pumpkin.jpg";
 // import platePumpkin from "../../assets/images/platePumpkinStand.jpg";
@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../../Layouts/Header_Footer";
 
 function Products() {
   const { getAllProducts } = useSupabase();
@@ -24,10 +25,12 @@ function Products() {
   };
 
   const countUp = () => {
-    setCount(prev => prev + 1);
-    const test = sessionStorage.setItem("count", "countValue");
-    console.log(test);
-  }
+    setCount((prev) => {
+      const newCount = prev + 1;
+      sessionStorage.setItem("count", newCount);
+      return newCount;
+    });
+  };
 
   // const Prodimages = [
   //   skeletons,
@@ -51,13 +54,18 @@ function Products() {
   };
 
   useEffect(() => {
-    setCount(sessionStorage.getItem("count", count));
+    const storedCount = sessionStorage.getItem("count");
+    if (storedCount !== null) {
+      setCount(Number(storedCount));
+    }
+
     getAllProds();
   }, []);
 
   return (
+    <Layout>
     <div className="products-page">
-      <Header />
+      {/* <Header /> */}
       <h1 className="products-header">Products</h1>
       <p>Counter: {count}</p>
       <button onClick={countUp}>Increase</button>
@@ -85,6 +93,7 @@ function Products() {
         )}
       </div>
     </div>
+    </Layout>
   );
 }
 
