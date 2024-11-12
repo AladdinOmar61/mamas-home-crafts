@@ -82,19 +82,27 @@ const SupabaseProvider = (props) => {
     try {
       const allProducts = await supabase.from("products").select("*");
       return allProducts;
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const getProductItem = async (id) => {
     try {
       const prodItem = await supabase.from("products").select().eq("id", id);
       return prodItem;
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const getImages = async () => {
+    const { data, error } = await supabase.storage.getBucket("products");
+    console.log(data);
+    if (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <SupabaseContext.Provider
@@ -107,7 +115,8 @@ const SupabaseProvider = (props) => {
         logout,
         checkUserLogin,
         getAllProducts,
-        getProductItem
+        getProductItem,
+        getImages
       }}
     >
       {props.children}

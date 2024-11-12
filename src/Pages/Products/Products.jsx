@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Products() {
-  const { getAllProducts } = useSupabase();
+  const { getAllProducts, getImages } = useSupabase();
   const [prodImgs, setProdImgs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hoveredProd, setHoveredProd] = useState(false);
