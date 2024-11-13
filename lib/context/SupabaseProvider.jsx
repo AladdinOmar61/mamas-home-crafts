@@ -97,10 +97,16 @@ const SupabaseProvider = (props) => {
   };
 
   const getImages = async () => {
-    const { data, error } = await supabase.storage.getBucket("products");
-    console.log(data);
-    if (error) {
-      console.log(error);
+    try {
+      const getBucket = await supabase.storage.from('products').getPublicUrl('SkeletonRitualFolder/SkeletonRitual1.jpg')
+      // .list('SkeletonRitualFolder', {
+      //   limit: 100,
+      //   offset: 0,
+      //   sortBy: { column: 'name', order: 'asc' },
+      // })
+      return getBucket;
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -116,7 +122,7 @@ const SupabaseProvider = (props) => {
         checkUserLogin,
         getAllProducts,
         getProductItem,
-        getImages
+        getImages,
       }}
     >
       {props.children}

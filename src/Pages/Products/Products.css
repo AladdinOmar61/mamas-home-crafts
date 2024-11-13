@@ -10,12 +10,13 @@
   justify-content: center;
   gap: 0.5rem;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .product-items {
   border: solid black 1px;
   width: 29%;
-  height: auto;
+  height: 40vh;
   position: relative;
 }
 
