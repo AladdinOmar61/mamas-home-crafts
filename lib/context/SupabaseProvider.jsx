@@ -17,6 +17,7 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 const SupabaseProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [productName, setProductName] = useState("");
 
   const register = async (email, password) => {
     const { error, data } = await supabase.auth.signUp({
@@ -90,6 +91,7 @@ const SupabaseProvider = (props) => {
   const getProductItem = async (id) => {
     try {
       const prodItem = await supabase.from("products").select().eq("id", id);
+      setProductName(prodItem.name);
       return prodItem;
     } catch (error) {
       console.log(error);
@@ -98,12 +100,12 @@ const SupabaseProvider = (props) => {
 
   const getImages = async () => {
     try {
-      const getBucket = await supabase.storage.from('products').getPublicUrl('SkeletonRitualFolder/SkeletonRitual1.jpg')
-      // .list('SkeletonRitualFolder', {
-      //   limit: 100,
-      //   offset: 0,
-      //   sortBy: { column: 'name', order: 'asc' },
-      // })
+      const getBucket = await supabase.storage.from('products').list()
+      .list('SkeletonRitualFolder', {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: 'name', order: 'asc' },
+      })
       return getBucket;
     } catch (err) {
       console.log(err);

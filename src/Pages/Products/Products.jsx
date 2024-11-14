@@ -11,6 +11,7 @@ function Products() {
   const [prodImgs, setProdImgs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hoveredProd, setHoveredProd] = useState(false);
+  const [bimg, setBimg] = useState("");
 
   const IMG_URL = "https://upyvpatfxspufwvcuqvl.supabase.co/storage/v1/object/public/products/SkeletonRitualFolder/";
 
@@ -24,12 +25,14 @@ function Products() {
 
   const getBucketImages = async () => {
     const bucketImages = await getImages();
-    let imageBasket = [];
+    // let imageBasket = [];
+    // console.log(bucketImages);
+    // for (let i = 1; i < bucketImages.data.length; i++) {
+    //   imageBasket.push(bucketImages.data[i])
+    // }
+    // setProdImgs(imageBasket);
     console.log(bucketImages);
-    for (let i = 1; i < bucketImages.data.length; i++) {
-      imageBasket.push(bucketImages.data[i])
-    }
-    setProdImgs(imageBasket);
+    setBimg(bucketImages.data.publicUrl);
     setLoading(true);
   }
 
@@ -70,8 +73,8 @@ function Products() {
                   <p className="view-product-text">VIEW PRODUCT</p>
                 </div>
               )}
-              {console.log(IMG_URL+prod.name)}
-              <img className="product-item" src={IMG_URL+prod.name}></img>
+              {console.log(bimg)}
+              <img className="product-item" src={bimg}></img>
             </Link>
           ))
         ) : (
