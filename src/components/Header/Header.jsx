@@ -13,6 +13,7 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ReactModal from "react-modal";
 // import pumpkin from "../../assets/images/pumpkin.jpg";
 import { useWindowSize } from "@uidotdev/usehooks";
+import PropTypes from 'prop-types';
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -45,6 +46,7 @@ function Header() {
     const cartArr = JSON.parse(sessionStorage.getItem("products"));
     console.log(cartArr);
     setCart(cartArr);
+    console.log(cartArr);
 
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
@@ -57,7 +59,6 @@ function Header() {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -199,5 +200,9 @@ function Header() {
     </div>
   );
 }
+Header.propTypes = {
+  cart: PropTypes.array.isRequired,
+  text: PropTypes.string,
+};
 
 export default Header;

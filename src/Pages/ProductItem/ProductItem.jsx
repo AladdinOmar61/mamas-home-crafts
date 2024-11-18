@@ -3,11 +3,13 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./ProductItem.css";
+import PropTypes from "prop-types";
 
-function ProductItem() {
+function ProductItem({ cart }) {
   const { prodId } = useParams();
   const { getProductItem } = useSupabase();
   const [prod, setProd] = useState({});
+  const [prodCart, setProdCart] = useState(cart);
   const [currImg, setCurrImg] = useState("");
 
   const productItem = async () => {
@@ -19,9 +21,14 @@ function ProductItem() {
   const addToCart = () => {
     const prodsToCart = JSON.parse(sessionStorage.getItem("products")) || [];
     const updatedProdCart = [...prodsToCart, prod]
+    setProdCart(updatedProdCart);
     sessionStorage.setItem("products", JSON.stringify(updatedProdCart));
-    console.log(updatedProdCart);
+    console.log(prodCart);
   }
+
+  useEffect(() => {
+    setProdCart(cart);
+  }, [cart])
 
   useEffect(() => {
     productItem();
@@ -49,21 +56,33 @@ function ProductItem() {
             </div>
           </div>
           <div className="single-product-desc-section">
-            <h3>Description</h3>
-            <p>{prod.description}</p>
-            <h3>Price</h3>
-            <p>{prod.price}</p>
-            <h3>Stock</h3>
-            <p>{prod.stock}</p>
+            <div>
+              <h3>Description</h3>
+              <p>{prod.description}</p>
+            </div>
+            <div>
+              <h3>Price</h3>
+              <p>{prod.price}</p>
+            </div>
+            <div>
+              <h3>Stock</h3>
+              <p>{prod.stock}</p>
+            </div>
             <div className="purchase-container">
               <button className="purchase-btn">Purchase</button>
-              <button className="add-cart-btn" onClick={addToCart}>Add to cart</button>
+              <button className="add-cart-btn" onClick={addToCart}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>
       </div>
     </>
   );
+}
+
+ProductItem.propTypes = {
+  cart: PropTypes.array.isRequired,
 }
 
 export default ProductItem;
