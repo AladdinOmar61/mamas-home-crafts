@@ -5,11 +5,11 @@ import Header from "../../components/Header/Header";
 import "./ProductItem.css";
 import PropTypes from "prop-types";
 
-function ProductItem({ cart }) {
+function ProductItem() {
   const { prodId } = useParams();
   const { getProductItem } = useSupabase();
   const [prod, setProd] = useState({});
-  const [prodCart, setProdCart] = useState(cart);
+  const [prodCart, setProdCart] = useState([]);
   const [currImg, setCurrImg] = useState("");
 
   const productItem = async () => {
@@ -26,9 +26,9 @@ function ProductItem({ cart }) {
     console.log(prodCart);
   }
 
-  useEffect(() => {
-    setProdCart(cart);
-  }, [cart])
+  // useEffect(() => {
+  //   setProdCart(cart);
+  // }, [cart])
 
   useEffect(() => {
     productItem();
@@ -36,7 +36,7 @@ function ProductItem({ cart }) {
 
   return (
     <>
-      <Header />
+      <Header prodCart={prodCart} />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
