@@ -1,5 +1,5 @@
 .single-product {
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .single-product-imgs {
@@ -22,10 +22,17 @@
 }
 
 .product-subimg {
-    border: solid black 1px;
-    height: 5rem;
-    width: 5rem;
+    /* border: solid black 1px; */
+    height: 6rem;
+    width: 6rem;
     object-fit: cover;
+    
+}
+
+.product-subimg:hover {
+    /* box-sizing: border-box; */
+    border: solid black 3px;
+    padding: 1px;
 }
 
 .single-product-info {
