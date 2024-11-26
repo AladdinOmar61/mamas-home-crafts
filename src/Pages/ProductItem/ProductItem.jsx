@@ -21,14 +21,14 @@ function ProductItem() {
   const addToCart = () => {
     const prodsToCart = JSON.parse(sessionStorage.getItem("products")) || [];
     const updatedProdCart = [...prodsToCart, prod]
-    setProdCart(updatedProdCart);
-    sessionStorage.setItem("products", JSON.stringify(updatedProdCart));
+    setProdCart(sessionStorage.setItem("products", JSON.stringify(updatedProdCart)));
+    // sessionStorage.setItem("products", JSON.stringify(updatedProdCart));
     console.log(prodCart);
   }
 
-  // useEffect(() => {
-  //   setProdCart(cart);
-  // }, [cart])
+  useEffect(() => {
+    // setProdCart(cart);
+  }, [prodCart])
 
   useEffect(() => {
     productItem();
@@ -36,7 +36,7 @@ function ProductItem() {
 
   return (
     <>
-      <Header prodCart={prodCart} />
+      <Header prodCart={prodCart} setProdCart={setProdCart} />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">

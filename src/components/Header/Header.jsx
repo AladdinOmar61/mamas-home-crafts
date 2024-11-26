@@ -12,7 +12,7 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
-function Header() {
+function Header({prodCart}) {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
   const [cart, setCart] = useState([]);
@@ -43,8 +43,10 @@ function Header() {
   useEffect(() => {
     const cartArr = JSON.parse(sessionStorage.getItem("products"));
     console.log(cartArr);
+    // setProdCart(cartArr);
+
     setCart(cartArr);
-    console.log(cartArr);
+    console.log(cart);
 
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
