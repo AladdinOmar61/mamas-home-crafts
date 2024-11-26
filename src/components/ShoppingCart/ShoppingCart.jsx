@@ -3,8 +3,11 @@ import { mdiClose } from "@mdi/js";
 import Icon from "@mdi/react";
 import "./ShoppingCart.css";
 import PropTypes from "prop-types";
+import { useSupabase } from "../../../lib/hooks/useSupabase";
 
 function ShoppingCart(props) {
+
+  const { cart } = useSupabase();
 
   return (
     <div className="shopping-cart">
@@ -50,8 +53,8 @@ function ShoppingCart(props) {
         <h1 className="cart-header">Shopping Cart</h1>
         <hr className="cart-divider" />
         <div className="cart-item-list">
-          {props.cart && props.cart.length > 0 ? (
-            props.cart.map((item, index) => (
+          {cart && cart.length > 0 ? (
+            cart.map((item, index) => (
               <div className="cart-item" key={index}>
                 <img
                   className="cart-item-img"
@@ -82,7 +85,6 @@ function ShoppingCart(props) {
 ShoppingCart.propTypes = {
   cartOpened: PropTypes.bool.isRequired,
   handleCart: PropTypes.func.isRequired,
-  cart: PropTypes.array.isRequired,
 };
 
 export default ShoppingCart;

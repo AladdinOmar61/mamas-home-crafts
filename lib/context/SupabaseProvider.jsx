@@ -17,6 +17,7 @@ const supabase = createClient(supabaseUrl, supabaseKey, {
 const SupabaseProvider = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
   
 
   const register = async (email, password) => {
@@ -117,6 +118,8 @@ const SupabaseProvider = (props) => {
       value={{
         user,
         loggedIn,
+        cart,
+        setCart,
         getUsers,
         register,
         login,

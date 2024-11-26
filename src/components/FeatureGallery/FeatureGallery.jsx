@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./FeatureGallery.css";
 import plateStand from "../../assets/images/plateOnStand.jpg";
 import pumpkin from "../../assets/images/pumpkin.jpg";
@@ -9,7 +9,6 @@ const FeatureGallery = () => {
   const images = [skeletons, plateStand, pumpkin, platePumpkin, plateStand, pumpkin];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const delay = 3000;
   const visibleImages = 3
 
   const goToNext = () => {
@@ -25,11 +24,6 @@ const FeatureGallery = () => {
       );
     }
   };
-
-  useEffect(() => {
-    const interval = setInterval(goToNext, delay);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
 
   return (
     <div className="feature-gallery">

@@ -3,13 +3,11 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./ProductItem.css";
-import PropTypes from "prop-types";
 
 function ProductItem() {
   const { prodId } = useParams();
-  const { getProductItem } = useSupabase();
+  const { getProductItem, setCart } = useSupabase();
   const [prod, setProd] = useState({});
-  const [prodCart, setProdCart] = useState([]);
   const [currImg, setCurrImg] = useState("");
 
   const productItem = async () => {
@@ -19,16 +17,12 @@ function ProductItem() {
   };
 
   const addToCart = () => {
-    const prodsToCart = JSON.parse(sessionStorage.getItem("products")) || [];
-    const updatedProdCart = [...prodsToCart, prod]
-    setProdCart(sessionStorage.setItem("products", JSON.stringify(updatedProdCart)));
-    // sessionStorage.setItem("products", JSON.stringify(updatedProdCart));
-    console.log(prodCart);
-  }
-
-  useEffect(() => {
-    // setProdCart(cart);
-  }, [prodCart])
+    const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
+    console.log(existingCart);
+    const updatedCart = [...existingCart, prod];
+    sessionStorage.setItem("products", JSON.stringify(updatedCart));
+    setCart(updatedCart);
+  };
 
   useEffect(() => {
     productItem();
@@ -36,7 +30,7 @@ function ProductItem() {
 
   return (
     <>
-      <Header prodCart={prodCart} setProdCart={setProdCart} />
+      <Header />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
@@ -79,10 +73,6 @@ function ProductItem() {
       </div>
     </>
   );
-}
-
-ProductItem.propTypes = {
-  cart: PropTypes.array.isRequired,
 }
 
 export default ProductItem;
