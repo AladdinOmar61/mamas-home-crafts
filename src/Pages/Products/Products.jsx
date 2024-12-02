@@ -33,7 +33,7 @@ function Products() {
   }, []);
 
   return (
-      <Layout>
+    <Layout>
       <h1 className="products-header">Products</h1>
       <div className="product-gallery">
         {loading === true ? (
@@ -45,12 +45,12 @@ function Products() {
               onMouseLeave={handleMouseLeave}
               className="product-items"
             >
-              {hoveredProd === prod.id && (
-                <div className="view-product">
-                  <p className="view-product-text">VIEW PRODUCT</p>
-                </div>
-              )}
               <img className="product-item" src={prod.images[0]}></img>
+              {hoveredProd === prod.id && (
+              <div className="view-product">
+                <p className="view-product-text">VIEW PRODUCT</p>
+              </div>
+              )}
             </Link>
           ))
         ) : (

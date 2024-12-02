@@ -59,6 +59,25 @@
   display: flex;
 }
 
+.cart-div {
+  width: 52px;
+  height: 52px;
+  position: relative;
+}
+
+.cart-ping {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  z-index: 10;
+  color: white;
+  border: solid transparent 1px;
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 50%;
+  background-color: red;
+}
+
 .account {
   color: black;
   padding: 0.5rem;

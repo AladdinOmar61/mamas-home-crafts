@@ -62,7 +62,7 @@ function ShoppingCart(props) {
                   alt="shopping cart item"
                 />
                 <div className="cart-item-info">
-                  <p>{item.name}</p>
+                  <p className="product-name">{item.name}</p>
                   <p>{item.price}</p>
                   <div className="cart-item-quantity">
                     <button className="subtract-item">-</button>

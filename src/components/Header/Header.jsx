@@ -20,7 +20,7 @@ function Header() {
 
   const size = useWindowSize();
 
-  const { user, logout } = useSupabase();
+  const { user, logout, cart, setCart } = useSupabase();
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
@@ -40,6 +40,8 @@ function Header() {
   };
 
   useEffect(() => {
+    const existingCart = JSON.parse(sessionStorage.getItem("products"));
+    setCart(existingCart);
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setProfileOpened(!profileOpened);
@@ -69,12 +71,17 @@ function Header() {
             </Link>
           </div>
           <div className="icons">
-            <Icon
-              className="cart"
-              onClick={handleCart}
-              path={mdiCartOutline}
-              size={1.5}
-            />
+            <div className="cart-div">
+              <Icon
+                className="cart"
+                onClick={handleCart}
+                path={mdiCartOutline}
+                size={1.5}
+              />
+              {cart && cart.length > 0 && (
+                <div className="cart-ping">{cart.length}</div>
+              )}
+            </div>
             <div className="profile-container" ref={profileRef}>
               <Icon
                 className="account"
@@ -125,10 +132,7 @@ function Header() {
           </div>
         </div>
       )}
-      <ShoppingCart
-        cartOpened={cartOpened}
-        handleCart={handleCart}
-      />
+      <ShoppingCart cartOpened={cartOpened} handleCart={handleCart} />
     </div>
   );
 }

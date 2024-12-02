@@ -43,6 +43,11 @@
     color: white;
 }
 
+.shop-now-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 @media screen and (max-width: 1200px) {
     .banner-text {
         position: relative;
