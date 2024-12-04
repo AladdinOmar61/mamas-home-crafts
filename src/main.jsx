@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { SupabaseProvider } from "../lib/context/SupabaseProvider";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home.jsx";
-import Register from "./Pages/Register/register.jsx";
+import Register from "./Pages/Register/Register.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Products from './Pages/Products/Products.jsx';
 import ProductItem from "./Pages/ProductItem/ProductItem.jsx";
