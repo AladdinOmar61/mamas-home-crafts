@@ -7,7 +7,7 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 
 function ShoppingCart(props) {
 
-  const { cart, setCart } = useSupabase();
+  const { cart } = useSupabase();
 
   // const removeCartItem = (itemToRemove) => {
   //   console.log('hello?')
@@ -82,7 +82,7 @@ function ShoppingCart(props) {
                     <p>1</p>
                     <button className="add-item">+</button>
                   </div>
-                  <button onClick={removeCartItem(index)} className="remove-button">
+                  <button onClick={console.log("poop")} className="remove-button">
                     remove
                   </button>
                 </div>
