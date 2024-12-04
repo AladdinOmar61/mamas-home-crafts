@@ -9,16 +9,16 @@ function ShoppingCart(props) {
 
   const { cart, setCart } = useSupabase();
 
-  const removeCartItem = (itemToRemove) => {
-    console.log('hello?')
-    for (let i = 0; i < cart.length; i++) {
-      if (i === itemToRemove) {
-        // cart.pop(cart[i])
-        const newCart = sessionStorage.removeItem(cart[i]);
-        setCart(newCart);
-      }
-    }
-  }
+  // const removeCartItem = (itemToRemove) => {
+  //   console.log('hello?')
+  //   for (let i = 0; i < cart.length; i++) {
+  //     if (i === itemToRemove) {
+  //       // cart.pop(cart[i])
+  //       const newCart = sessionStorage.removeItem(cart[i]);
+  //       setCart(newCart);
+  //     }
+  //   }
+  // }
 
   console.log(cart)
 
