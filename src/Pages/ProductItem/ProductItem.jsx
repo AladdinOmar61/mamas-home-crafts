@@ -18,7 +18,6 @@ function ProductItem() {
 
   const addToCart = () => {
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
-    console.log(existingCart);
     const updatedCart = [...existingCart, prod];
     sessionStorage.setItem("products", JSON.stringify(updatedCart));
     setCart(updatedCart);

@@ -7,7 +7,20 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 
 function ShoppingCart(props) {
 
-  const { cart } = useSupabase();
+  const { cart, setCart } = useSupabase();
+
+  const removeCartItem = (itemToRemove) => {
+    console.log('hello?')
+    for (let i = 0; i < cart.length; i++) {
+      if (i === itemToRemove) {
+        // cart.pop(cart[i])
+        const newCart = sessionStorage.removeItem(cart[i]);
+        setCart(newCart);
+      }
+    }
+  }
+
+  console.log(cart)
 
   return (
     <div className="shopping-cart">
@@ -66,15 +79,17 @@ function ShoppingCart(props) {
                   <p>{item.price}</p>
                   <div className="cart-item-quantity">
                     <button className="subtract-item">-</button>
-                    <p>0</p>
+                    <p>1</p>
                     <button className="add-item">+</button>
                   </div>
-                  <a href="">remove</a>
+                  <button onClick={removeCartItem(index)} className="remove-button">
+                    remove
+                  </button>
                 </div>
               </div>
             ))
           ) : (
-            <p style={{ textAlign: "center" }}>No items in the cart</p>
+            <p style={{ textAlign: "center" }}>No items in cart</p>
           )}
         </div>
         <button className="checkout">Checkout</button>

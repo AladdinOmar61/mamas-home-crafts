@@ -78,15 +78,15 @@
 }
 
 .cart-item-img {
-  height: 8rem;
-  width: 8rem;
+  height: 9.5rem;
+  width: 9.5rem;
   border: solid black 1px;
   object-fit: cover;
   aspect-ratio: 10rem/7rem;
 }
 
 .cart-item-info {
-  text-align: left;
+  text-align: center;
 }
 
 .product-name {
@@ -94,10 +94,10 @@
 }
 
 .cart-item-quantity {
-  border: solid black 1px;
-  width: 5rem;
-  height: 1.5rem;
-  text-align: center;
+  /* border: solid black 1px; */
+  /* width: 5rem;*/
+  height: 1.2rem;
+  /* text-align: center; */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -110,6 +110,15 @@
 
 .subtract-item {
   border: none;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: black;
+  border: none;
+  text-decoration: underline;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
 }
 
 .checkout {
