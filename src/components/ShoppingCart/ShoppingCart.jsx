@@ -4,12 +4,10 @@ import Icon from "@mdi/react";
 import "./ShoppingCart.css";
 import PropTypes from "prop-types";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
-import { useState } from "react";
+import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
 
 function ShoppingCart(props) {
   const { cart, setCart } = useSupabase();
-
-  const [quantity, setQuantity] = useState(1);
 
   const removeCartItem = (itemToRemove) => {
     for (let i = 0; i < cart.length; i++) {
@@ -66,48 +64,7 @@ function ShoppingCart(props) {
         <div className="cart-item-list">
           {cart && cart.length > 0 ? (
             cart.map((item, index) => (
-              <div className="cart-item" key={index}>
-                <img
-                  className="cart-item-img"
-                  src={item.images[0]}
-                  alt="shopping cart item"
-                />
-                <div className="cart-item-info">
-                  <p className="product-name">{item.name}</p>
-                  <p>${(item.price * quantity).toFixed(2)}</p>
-                  <div className="cart-item-quantity">
-                    {quantity > 1 && (
-                      <button
-                        className="subtract-item"
-                        onClick={() => {
-                          item.quantity -= 1;
-                          setQuantity(item.quantity);
-                          sessionStorage.setItem("quantity", item.quantity)
-                        }}
-                      >
-                        -
-                      </button>
-                    )}
-                    <p>{quantity}</p>
-                    <button
-                      className="add-item"
-                      onClick={() => {
-                        item.quantity += 1;
-                        setQuantity(item.quantity);
-                        sessionStorage.setItem("quantity", item.quantity)
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => removeCartItem(index)}
-                    className="remove-button"
-                  >
-                    remove
-                  </button>
-                </div>
-              </div>
+              <ShoppingCartItem item={item} key={index} index={index} removeCartItem={removeCartItem} />
             ))
           ) : (
             <p style={{ textAlign: "center" }}>No items in cart</p>

@@ -16,16 +16,24 @@ function ProductItem() {
     setCurrImg(getProdItem.data[0].images[0]);
   };
 
+  console.log(prod);
+
   const addToCart = () => {
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
     if (cart && cart.length > 0 && cart.includes(prod)) {
       const duplicate = cart.find((item) => item === prod);
-      duplicate.quantity+=1;
+      duplicate.quantity += 1;
     } else {
       const updatedCart = [...existingCart, prod];
       sessionStorage.setItem("products", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
+    const currCartLen = JSON.parse(sessionStorage.getItem("products"));
+    console.log(currCartLen.length);
+    // console.log('CART' + JSON.stringify(cart))
+    // console.log("length" + cart && cart.length);
+    sessionStorage.setItem(`quantity${currCartLen.length - 1}`, prod.quantity);
+    // console.log(`quantity${cart.length - 1}`);
   };
 
   useEffect(() => {
