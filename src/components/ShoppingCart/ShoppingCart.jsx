@@ -4,23 +4,21 @@ import Icon from "@mdi/react";
 import "./ShoppingCart.css";
 import PropTypes from "prop-types";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
+import { useState } from "react";
 
 function ShoppingCart(props) {
+  const { cart, setCart } = useSupabase();
 
-  const { cart } = useSupabase();
+  const [quantity, setQuantity] = useState(1);
 
-  // const removeCartItem = (itemToRemove) => {
-  //   console.log('hello?')
-  //   for (let i = 0; i < cart.length; i++) {
-  //     if (i === itemToRemove) {
-  //       // cart.pop(cart[i])
-  //       const newCart = sessionStorage.removeItem(cart[i]);
-  //       setCart(newCart);
-  //     }
-  //   }
-  // }
-
-  console.log(cart)
+  const removeCartItem = (itemToRemove) => {
+    for (let i = 0; i < cart.length; i++) {
+      if (i === itemToRemove) {
+        const newCart = sessionStorage.removeItem(cart[i]);
+        setCart(newCart);
+      }
+    }
+  };
 
   return (
     <div className="shopping-cart">
@@ -76,13 +74,36 @@ function ShoppingCart(props) {
                 />
                 <div className="cart-item-info">
                   <p className="product-name">{item.name}</p>
-                  <p>{item.price}</p>
+                  <p>${(item.price * quantity).toFixed(2)}</p>
                   <div className="cart-item-quantity">
-                    <button className="subtract-item">-</button>
-                    <p>1</p>
-                    <button className="add-item">+</button>
+                    {quantity > 1 && (
+                      <button
+                        className="subtract-item"
+                        onClick={() => {
+                          item.quantity -= 1;
+                          setQuantity(item.quantity);
+                          sessionStorage.setItem("quantity", item.quantity)
+                        }}
+                      >
+                        -
+                      </button>
+                    )}
+                    <p>{quantity}</p>
+                    <button
+                      className="add-item"
+                      onClick={() => {
+                        item.quantity += 1;
+                        setQuantity(item.quantity);
+                        sessionStorage.setItem("quantity", item.quantity)
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
-                  <button onClick={console.log("poop")} className="remove-button">
+                  <button
+                    onClick={() => removeCartItem(index)}
+                    className="remove-button"
+                  >
                     remove
                   </button>
                 </div>

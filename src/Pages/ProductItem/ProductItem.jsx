@@ -6,7 +6,7 @@ import "./ProductItem.css";
 
 function ProductItem() {
   const { prodId } = useParams();
-  const { getProductItem, setCart } = useSupabase();
+  const { getProductItem, cart, setCart } = useSupabase();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
 
@@ -18,9 +18,14 @@ function ProductItem() {
 
   const addToCart = () => {
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
-    const updatedCart = [...existingCart, prod];
-    sessionStorage.setItem("products", JSON.stringify(updatedCart));
-    setCart(updatedCart);
+    if (cart && cart.length > 0 && cart.includes(prod)) {
+      const duplicate = cart.find((item) => item === prod);
+      duplicate.quantity+=1;
+    } else {
+      const updatedCart = [...existingCart, prod];
+      sessionStorage.setItem("products", JSON.stringify(updatedCart));
+      setCart(updatedCart);
+    }
   };
 
   useEffect(() => {

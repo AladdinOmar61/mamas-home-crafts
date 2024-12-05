@@ -40,6 +40,8 @@ function Header() {
   };
 
   useEffect(() => {
+    const amount = sessionStorage.getItem("quantity")
+    console.log(amount)
     const existingCart = JSON.parse(sessionStorage.getItem("products"));
     setCart(existingCart);
     const handleClickOutside = (event) => {
