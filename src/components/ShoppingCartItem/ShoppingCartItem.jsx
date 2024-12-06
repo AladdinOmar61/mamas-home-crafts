@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-// import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useState, useEffect } from "react";
 
 function ShoppingCartItem({ item, index, removeCartItem }) {
@@ -27,8 +26,12 @@ function ShoppingCartItem({ item, index, removeCartItem }) {
             <button
               className="subtract-item"
               onClick={() => {
-                setQuantity((prev) => prev - 1);
-                sessionStorage.setItem(`quantity${index}`, quantity);
+                setQuantity((prev) => {
+                  const subQuant = prev - 1;
+                  sessionStorage.setItem(`quantity${index}`, subQuant);
+                  return subQuant;
+                 });
+                
               }}
             >
               -
@@ -38,8 +41,12 @@ function ShoppingCartItem({ item, index, removeCartItem }) {
           <button
             className="add-item"
             onClick={() => {
-              setQuantity((prev) => prev + 1);
-              sessionStorage.setItem(`quantity${index}`, quantity);
+              setQuantity((prev) => {
+                const addedQuant = prev + 1 
+                sessionStorage.setItem(`quantity${index}`, addedQuant);
+                item.quantity = quantity;
+                return addedQuant;
+              });
             }}
           >
             +
