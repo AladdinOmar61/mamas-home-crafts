@@ -10,11 +10,16 @@ function ShoppingCart(props) {
   const { cart, setCart } = useSupabase();
 
   const removeCartItem = (itemToRemove) => {
-    for (let i = 0; i < cart.length; i++) {
-      if (i === itemToRemove) {
-        const newCart = sessionStorage.removeItem(cart[i]);
-        setCart(newCart);
-      }
+    const storedCart = sessionStorage.getItem("products");
+    if (storedCart) {
+      const currCart = JSON.parse(storedCart);
+      const filteredCart = currCart.filter(
+        (cartItem, index) => index !== itemToRemove
+      );
+      const newCart = JSON.stringify(filteredCart);
+      sessionStorage.setItem("products", newCart);
+      sessionStorage.removeItem(`quantity${cart.indexOf(cart[itemToRemove])}`);
+      setCart(filteredCart);
     }
   };
 
@@ -64,7 +69,12 @@ function ShoppingCart(props) {
         <div className="cart-item-list">
           {cart && cart.length > 0 ? (
             cart.map((item, index) => (
-              <ShoppingCartItem item={item} key={index} index={index} removeCartItem={removeCartItem} />
+              <ShoppingCartItem
+                item={item}
+                key={index}
+                index={index}
+                removeCartItem={removeCartItem}
+              />
             ))
           ) : (
             <p style={{ textAlign: "center" }}>No items in cart</p>

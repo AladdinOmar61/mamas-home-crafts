@@ -7,12 +7,13 @@ import {
   mdiMenu,
 } from "@mdi/js";
 import { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
-function Header() {
+function Header({ totalQuant }) {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
 
@@ -20,7 +21,7 @@ function Header() {
 
   const size = useWindowSize();
 
-  const { user, logout, cart, setCart } = useSupabase();
+  const { user, logout, setCart } = useSupabase();
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
@@ -39,11 +40,7 @@ function Header() {
     }
   };
 
-  useEffect(() => {
-    // const amount = sessionStorage.getItem("quantity")
-    // console.log(amount)
-    const existingCart = JSON.parse(sessionStorage.getItem("products"));
-    setCart(existingCart);
+  const toggleProfileWindow = () => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setProfileOpened(!profileOpened);
@@ -58,6 +55,12 @@ function Header() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  };
+
+  useEffect(() => {
+    const existingCart = JSON.parse(sessionStorage.getItem("products"));
+    setCart(existingCart);
+    toggleProfileWindow();
   }, [profileOpened]);
 
   return (
@@ -80,9 +83,7 @@ function Header() {
                 path={mdiCartOutline}
                 size={1.5}
               />
-              {cart && cart.length > 0 && (
-                <div className="cart-ping">{cart.length}</div>
-              )}
+              {totalQuant > 0 && <div className="cart-ping">{totalQuant}</div>}
             </div>
             <div className="profile-container" ref={profileRef}>
               <Icon
@@ -138,5 +139,8 @@ function Header() {
     </div>
   );
 }
+Header.propTypes = {
+  totalQuant: PropTypes.number.isRequired,
+};
 
 export default Header;

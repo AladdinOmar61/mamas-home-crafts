@@ -9,6 +9,7 @@ function ProductItem() {
   const { getProductItem, cart, setCart } = useSupabase();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
+  const [totalQuant, setTotalQuant] = useState(0);
 
   const productItem = async () => {
     const getProdItem = await getProductItem(prodId);
@@ -16,25 +17,43 @@ function ProductItem() {
     setCurrImg(getProdItem.data[0].images[0]);
   };
 
-  console.log(prod);
-
   const addToCart = () => {
+    let isDuplicate = false;
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
-    if (cart && cart.length > 0 && cart.includes(prod)) {
-      const duplicate = cart.find((item) => item === prod);
-      duplicate.quantity += 1;
-    } else {
+    if (cart && cart.length > 0)
+    {
+      for (let i = 0; i < cart.length; i++) { 
+        if (cart[i].id === prod.id) {
+          const duplicate = cart.find((item) => item.id === prod.id);
+          duplicate.quantity += 1;
+          isDuplicate = true;
+        }
+      }
+    }
+    
+    if(isDuplicate === false) {
       const updatedCart = [...existingCart, prod];
       sessionStorage.setItem("products", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
-    const currCartLen = JSON.parse(sessionStorage.getItem("products"));
-    console.log(currCartLen.length);
-    // console.log('CART' + JSON.stringify(cart))
-    // console.log("length" + cart && cart.length);
-    sessionStorage.setItem(`quantity${currCartLen.length - 1}`, prod.quantity);
-    // console.log(`quantity${cart.length - 1}`);
+    const currCartLen = JSON.parse(sessionStorage.getItem("products")).length;
+    // console.log(currCartLen);
+    sessionStorage.setItem(`quantity${currCartLen - 1}`, prod.quantity);
   };
+
+    const getStockQuants = () => {
+      // debugger;
+      let stockCounter = 0;
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        const value = sessionStorage.getItem(key);
+        if (key.startsWith("quantity")) {
+          stockCounter += parseInt(value, 10);
+        }
+        console.log(stockCounter);
+      }
+      setTotalQuant(stockCounter);
+    };
 
   useEffect(() => {
     productItem();
@@ -42,7 +61,7 @@ function ProductItem() {
 
   return (
     <>
-      <Header />
+      <Header totalQuant={totalQuant} />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
@@ -76,7 +95,10 @@ function ProductItem() {
             </div>
             <div className="purchase-container">
               <button className="purchase-btn">Purchase</button>
-              <button className="add-cart-btn" onClick={addToCart}>
+              <button className="add-cart-btn" onClick={() => {
+                addToCart();
+                getStockQuants();
+              }}>
                 Add to cart
               </button>
             </div>
