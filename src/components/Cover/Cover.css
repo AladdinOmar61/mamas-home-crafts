@@ -89,20 +89,38 @@
   }
 }
 
+@media screen and (max-width: 800px) { 
+  .cover {
+    height: calc(30rem * 0.6);
+  }
+}
+
+@media screen and (max-width: 700px) { 
+  .cover {
+    height: calc(30rem * 0.5);
+  }
+
+  .explore-btn {
+    width: 5.5rem;
+    height: 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .cover-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
 @media screen and (max-width: 450px) {
   .cover-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .explore-btn {
     width: 5rem;
-    height: 2rem;
-    font-size: 1rem;
+    height: 1.8rem;
+    font-size: 0.9rem;
   }
 }
