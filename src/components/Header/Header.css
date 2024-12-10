@@ -181,3 +181,27 @@
   background-color: black;
   transition: all 0.3s;
 }
+
+@media screen and (max-width: 800px) {
+  .website-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .website-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .website-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .website-title {
+    font-size: 1rem;
+  }
+}

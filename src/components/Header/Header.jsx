@@ -69,7 +69,7 @@ function Header({ totalQuant }) {
         <div className="header-nav">
           <div className="header-subnav">
             <Link to="/" className="website-title">
-              Made by Mama
+              Mamas Home Crafts
             </Link>
             <Link to="/products" className="products">
               Products
@@ -114,9 +114,9 @@ function Header({ totalQuant }) {
         </div>
       ) : (
         <div className="mobile-header-nav">
-          <Icon path={mdiMenu} size={1.5} />
+          <Icon path={mdiMenu} size={size.width < 500 ? 1 : 1.5} />
           <Link to="/" className="website-title">
-            Made by Mama
+            Mamas Home Crafts
           </Link>
 
           <div className="icons">
@@ -124,13 +124,13 @@ function Header({ totalQuant }) {
               className="cart"
               onClick={handleCart}
               path={mdiCartOutline}
-              size={1.5}
+              size={size.width < 500 ? 1 : 1.5}
             />
             <Icon
               className="account"
               onClick={handleProfile}
               path={mdiAccountOutline}
-              size={1.5}
+              size={size.width < 500 ? 1 : 1.5}
             />
           </div>
         </div>
