@@ -6,7 +6,13 @@ import PropTypes from "prop-types";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
 
-function ShoppingCart(props) {
+function ShoppingCart({
+  cartOpened,
+  handleCart,
+  getStockQuants,
+  totalQuant,
+  setTotalQuant,
+}) {
   const { cart, setCart } = useSupabase();
 
   const removeCartItem = (itemToRemove) => {
@@ -33,8 +39,8 @@ function ShoppingCart(props) {
           afterOpen: "CartModal--after-open",
           beforeClose: "CartModal--before-close",
         }}
-        isOpen={props.cartOpened}
-        onRequestClose={props.handleCart}
+        isOpen={cartOpened}
+        onRequestClose={handleCart}
         closeTimeoutMS={300}
         style={{
           overlay: {
@@ -59,17 +65,16 @@ function ShoppingCart(props) {
           },
         }}
       >
-        <Icon
-          className="close-cart"
-          onClick={props.handleCart}
-          path={mdiClose}
-        />
+        <Icon className="close-cart" onClick={handleCart} path={mdiClose} />
         <h1 className="cart-header">Shopping Cart</h1>
         <hr className="cart-divider" />
         <div className="cart-item-list">
           {cart && cart.length > 0 ? (
             cart.map((item, index) => (
               <ShoppingCartItem
+                getStockQuants={getStockQuants}
+                totalQuant={totalQuant}
+                setTotalQuant={setTotalQuant}
                 item={item}
                 key={index}
                 index={index}
@@ -88,6 +93,9 @@ function ShoppingCart(props) {
 ShoppingCart.propTypes = {
   cartOpened: PropTypes.bool.isRequired,
   handleCart: PropTypes.func.isRequired,
+  getStockQuants: PropTypes.func,
+  totalQuant: PropTypes.number,
+  setTotalQuant: PropTypes.func,
 };
 
 export default ShoppingCart;

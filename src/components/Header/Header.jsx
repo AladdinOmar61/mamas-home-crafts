@@ -13,7 +13,7 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
-function Header({ totalQuant }) {
+function Header({ totalQuant, setTotalQuant, getStockQuants }) {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
 
@@ -135,12 +135,20 @@ function Header({ totalQuant }) {
           </div>
         </div>
       )}
-      <ShoppingCart cartOpened={cartOpened} handleCart={handleCart} />
+      <ShoppingCart
+        getStockQuants={getStockQuants}
+        totalQuant={totalQuant}
+        setTotalQuant={setTotalQuant}
+        cartOpened={cartOpened}
+        handleCart={handleCart}
+      />
     </div>
   );
 }
 Header.propTypes = {
   totalQuant: PropTypes.number.isRequired,
+  setTotalQuant: PropTypes.func,
+  getStockQuants: PropTypes.func,
 };
 
 export default Header;

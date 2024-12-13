@@ -61,7 +61,11 @@ function ProductItem() {
 
   return (
     <>
-      <Header totalQuant={totalQuant} />
+      <Header
+        getStockQuants={getStockQuants}
+        totalQuant={totalQuant}
+        setTotalQuant={setTotalQuant}
+      />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
@@ -95,10 +99,13 @@ function ProductItem() {
             </div>
             <div className="purchase-container">
               <button className="purchase-btn">Purchase</button>
-              <button className="add-cart-btn" onClick={() => {
-                addToCart();
-                getStockQuants();
-              }}>
+              <button
+                className="add-cart-btn"
+                onClick={() => {
+                  addToCart();
+                  getStockQuants();
+                }}
+              >
                 Add to cart
               </button>
             </div>
