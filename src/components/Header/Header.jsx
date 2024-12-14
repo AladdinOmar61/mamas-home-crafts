@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
+import { useShoppingCart } from "../../../lib/hooks/useShoppingCart.js";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
@@ -21,7 +22,8 @@ function Header() {
 
   const size = useWindowSize();
 
-  const { user, logout, setCart } = useSupabase();
+  const { user, logout } = useSupabase();
+  const { setCart } = useShoppingCart();
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
@@ -70,10 +72,13 @@ function Header() {
   };
 
   useEffect(() => {
+    console.log("header use effect")
     const existingCart = JSON.parse(sessionStorage.getItem("products"));
     setCart(existingCart);
     toggleProfileWindow();
-  }, [profileOpened]);
+    getStockQuants();
+    console.log("update from Header!")
+  }, [profileOpened, totalQuant]);
 
   return (
     <div className="header">

@@ -9,7 +9,8 @@ function ShoppingCartItem({ item, index, removeCartItem, getStockQuants, totalQu
     if (storedQuantity) {
       setQuantity(parseInt(storedQuantity, 10));
     }
-     getStockQuants();
+    getStockQuants();
+    console.log("update from shoppingCartItem!");
   }, [index, totalQuant]);
 
   return (

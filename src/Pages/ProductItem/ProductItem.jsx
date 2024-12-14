@@ -3,10 +3,12 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./ProductItem.css";
+import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 
 function ProductItem() {
   const { prodId } = useParams();
-  const { getProductItem, cart, setCart } = useSupabase();
+  const { getProductItem} = useSupabase();
+  const { cart, setCart } = useShoppingCart();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
 
@@ -17,6 +19,8 @@ function ProductItem() {
   };
 
   const addToCart = () => {
+    // debugger;
+    console.log(cart);
     let isDuplicate = false;
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
     if (cart && cart.length > 0)
@@ -40,8 +44,23 @@ function ProductItem() {
     sessionStorage.setItem(`quantity${currCartLen - 1}`, prod.quantity);
   };
 
+  const getSessionStockQuants = () => {
+    let seshStockCounter = 0;
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+      if (key.startsWith("quantity")) {
+        seshStockCounter += parseInt(value, 10);
+      }
+    }
+    console.log("sesh stock quants: " + seshStockCounter);
+    // return seshStockCounter;
+  };
+
   useEffect(() => {
+    // needs to keep track of session storage stock quantity!
     productItem();
+    getSessionStockQuants();
   }, [prodId]);
 
   return (

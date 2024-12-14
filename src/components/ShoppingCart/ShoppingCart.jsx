@@ -3,8 +3,9 @@ import { mdiClose } from "@mdi/js";
 import Icon from "@mdi/react";
 import "./ShoppingCart.css";
 import PropTypes from "prop-types";
-import { useSupabase } from "../../../lib/hooks/useSupabase";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
+// import { useSupabase } from "../../../lib/hooks/useSupabase";
+import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 
 function ShoppingCart({
   cartOpened,
@@ -13,7 +14,8 @@ function ShoppingCart({
   totalQuant,
   setTotalQuant,
 }) {
-  const { cart, setCart } = useSupabase();
+  const { cart, setCart } = useShoppingCart();
+  console.log("cart from shop cart: " + cart)
 
   const removeCartItem = (itemToRemove) => {
     const storedCart = sessionStorage.getItem("products");
