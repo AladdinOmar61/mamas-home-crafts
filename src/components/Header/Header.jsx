@@ -7,15 +7,15 @@ import {
   mdiMenu,
 } from "@mdi/js";
 import { useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 
-function Header({ totalQuant, setTotalQuant, getStockQuants }) {
+function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
+  const [totalQuant, setTotalQuant] = useState(0); // starting here for quant
 
   const profileRef = useRef(null);
 
@@ -55,6 +55,18 @@ function Header({ totalQuant, setTotalQuant, getStockQuants }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  };
+
+  const getStockQuants = () => {
+    let stockCounter = 0;
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+      if (key.startsWith("quantity")) {
+        stockCounter += parseInt(value, 10);
+      }
+    }
+    setTotalQuant(stockCounter);
   };
 
   useEffect(() => {
@@ -145,10 +157,5 @@ function Header({ totalQuant, setTotalQuant, getStockQuants }) {
     </div>
   );
 }
-Header.propTypes = {
-  totalQuant: PropTypes.number.isRequired,
-  setTotalQuant: PropTypes.func,
-  getStockQuants: PropTypes.func,
-};
 
 export default Header;

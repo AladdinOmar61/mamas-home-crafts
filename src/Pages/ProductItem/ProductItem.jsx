@@ -9,7 +9,6 @@ function ProductItem() {
   const { getProductItem, cart, setCart } = useSupabase();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
-  const [totalQuant, setTotalQuant] = useState(0);
 
   const productItem = async () => {
     const getProdItem = await getProductItem(prodId);
@@ -41,31 +40,13 @@ function ProductItem() {
     sessionStorage.setItem(`quantity${currCartLen - 1}`, prod.quantity);
   };
 
-    const getStockQuants = () => {
-      // debugger;
-      let stockCounter = 0;
-      for (let i = 0; i < sessionStorage.length; i++) {
-        const key = sessionStorage.key(i);
-        const value = sessionStorage.getItem(key);
-        if (key.startsWith("quantity")) {
-          stockCounter += parseInt(value, 10);
-        }
-        console.log(stockCounter);
-      }
-      setTotalQuant(stockCounter);
-    };
-
   useEffect(() => {
     productItem();
   }, [prodId]);
 
   return (
     <>
-      <Header
-        getStockQuants={getStockQuants}
-        totalQuant={totalQuant}
-        setTotalQuant={setTotalQuant}
-      />
+      <Header/>
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
@@ -103,7 +84,6 @@ function ProductItem() {
                 className="add-cart-btn"
                 onClick={() => {
                   addToCart();
-                  getStockQuants();
                 }}
               >
                 Add to cart
