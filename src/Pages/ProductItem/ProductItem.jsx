@@ -8,7 +8,7 @@ import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 function ProductItem() {
   const { prodId } = useParams();
   const { getProductItem} = useSupabase();
-  const { cart, setCart } = useShoppingCart();
+  const { cart, setCart, setQuantity } = useShoppingCart();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
 
@@ -19,16 +19,19 @@ function ProductItem() {
   };
 
   const addToCart = () => {
+    // console.log(cart);
     // debugger;
-    console.log(cart);
     let isDuplicate = false;
+    let quantCounter = 0;
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
     if (cart && cart.length > 0)
     {
-      for (let i = 0; i < cart.length; i++) { 
+      for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === prod.id) {
-          const duplicate = cart.find((item) => item.id === prod.id);
-          duplicate.quantity += 1;
+          let itemQuant = parseInt(sessionStorage.getItem(`quantity${i}`));
+          let addedQuant = itemQuant + 1
+          quantCounter = addedQuant;
+          sessionStorage.setItem(`quantity${i}`, addedQuant);
           isDuplicate = true;
         }
       }
@@ -41,7 +44,7 @@ function ProductItem() {
     }
     const currCartLen = JSON.parse(sessionStorage.getItem("products")).length;
     // console.log(currCartLen);
-    sessionStorage.setItem(`quantity${currCartLen - 1}`, prod.quantity);
+    sessionStorage.setItem(`quantity${currCartLen - 1}`, quantCounter === 0 ? 1 : quantCounter);
   };
 
   const getSessionStockQuants = () => {
@@ -53,7 +56,7 @@ function ProductItem() {
         seshStockCounter += parseInt(value, 10);
       }
     }
-    console.log("sesh stock quants: " + seshStockCounter);
+    setQuantity(seshStockCounter)
     // return seshStockCounter;
   };
 
@@ -91,7 +94,7 @@ function ProductItem() {
             </div>
             <div>
               <h3>Price</h3>
-              <p>{prod.price}</p>
+              <p>${prod.price}</p>
             </div>
             <div>
               <h3>Stock</h3>
@@ -103,6 +106,7 @@ function ProductItem() {
                 className="add-cart-btn"
                 onClick={() => {
                   addToCart();
+                  getSessionStockQuants();
                 }}
               >
                 Add to cart

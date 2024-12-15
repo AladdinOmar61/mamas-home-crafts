@@ -4,18 +4,14 @@ import Icon from "@mdi/react";
 import "./ShoppingCart.css";
 import PropTypes from "prop-types";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
-// import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 
 function ShoppingCart({
   cartOpened,
   handleCart,
   getStockQuants,
-  totalQuant,
-  setTotalQuant,
 }) {
   const { cart, setCart } = useShoppingCart();
-  console.log("cart from shop cart: " + cart)
 
   const removeCartItem = (itemToRemove) => {
     const storedCart = sessionStorage.getItem("products");
@@ -29,6 +25,7 @@ function ShoppingCart({
       sessionStorage.removeItem(`quantity${cart.indexOf(cart[itemToRemove])}`);
       setCart(filteredCart);
     }
+    getStockQuants();
   };
 
   return (
@@ -75,8 +72,6 @@ function ShoppingCart({
             cart.map((item, index) => (
               <ShoppingCartItem
                 getStockQuants={getStockQuants}
-                totalQuant={totalQuant}
-                setTotalQuant={setTotalQuant}
                 item={item}
                 key={index}
                 index={index}
@@ -96,8 +91,6 @@ ShoppingCart.propTypes = {
   cartOpened: PropTypes.bool.isRequired,
   handleCart: PropTypes.func.isRequired,
   getStockQuants: PropTypes.func,
-  totalQuant: PropTypes.number,
-  setTotalQuant: PropTypes.func,
 };
 
 export default ShoppingCart;

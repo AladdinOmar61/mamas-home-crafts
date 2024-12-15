@@ -16,14 +16,14 @@ import { useShoppingCart } from "../../../lib/hooks/useShoppingCart.js";
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
-  const [totalQuant, setTotalQuant] = useState(0); // starting here for quant
+  // const [totalQuant, setTotalQuant] = useState(0); // starting here for quant
 
   const profileRef = useRef(null);
 
   const size = useWindowSize();
 
   const { user, logout } = useSupabase();
-  const { setCart } = useShoppingCart();
+  const { quantity, setQuantity, setCart } = useShoppingCart();
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
@@ -68,17 +68,16 @@ function Header() {
         stockCounter += parseInt(value, 10);
       }
     }
-    setTotalQuant(stockCounter);
+    setQuantity(stockCounter);
+     console.log("total quantity: " + quantity);
   };
 
   useEffect(() => {
-    console.log("header use effect")
     const existingCart = JSON.parse(sessionStorage.getItem("products"));
     setCart(existingCart);
     toggleProfileWindow();
     getStockQuants();
-    console.log("update from Header!")
-  }, [profileOpened, totalQuant]);
+  }, [profileOpened]);
 
   return (
     <div className="header">
@@ -100,7 +99,7 @@ function Header() {
                 path={mdiCartOutline}
                 size={1.5}
               />
-              {totalQuant > 0 && <div className="cart-ping">{totalQuant}</div>}
+              {quantity > 0 && <div className="cart-ping">{quantity}</div>}
             </div>
             <div className="profile-container" ref={profileRef}>
               <Icon
@@ -154,8 +153,6 @@ function Header() {
       )}
       <ShoppingCart
         getStockQuants={getStockQuants}
-        totalQuant={totalQuant}
-        setTotalQuant={setTotalQuant}
         cartOpened={cartOpened}
         handleCart={handleCart}
       />

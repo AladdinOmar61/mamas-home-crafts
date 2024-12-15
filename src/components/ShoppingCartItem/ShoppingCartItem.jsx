@@ -1,17 +1,48 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 
-function ShoppingCartItem({ item, index, removeCartItem, getStockQuants, totalQuant }) {
-  const [quantity, setQuantity] = useState(item.quantity);
+function ShoppingCartItem({ item, index, removeCartItem }) {
+  const [itemQuantity, setItemQuantity] = useState(item.quantity);
+
+  const { setQuantity } = useShoppingCart();
+
+  const getStockQuants = () => {
+    let stockCounter = 0;
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      const value = sessionStorage.getItem(key);
+      if (key.startsWith("quantity")) {
+        stockCounter += parseInt(value, 10);
+      }
+    }
+    setQuantity(stockCounter);
+  };
 
   useEffect(() => {
     const storedQuantity = sessionStorage.getItem(`quantity${index}`);
     if (storedQuantity) {
-      setQuantity(parseInt(storedQuantity, 10));
+      setItemQuantity(parseInt(storedQuantity, 10));
     }
+  }, [index]);
+
+  useEffect(() => {
     getStockQuants();
-    console.log("update from shoppingCartItem!");
-  }, [index, totalQuant]);
+  }, [itemQuantity]);
+
+  const subtractQuant = () => {
+    if (itemQuantity > 1) {
+      const newQuantity = itemQuantity - 1;
+      setItemQuantity(newQuantity);
+      sessionStorage.setItem(`quantity${index}`, newQuantity);
+    }
+  };
+
+  const addQuant = () => {
+    const newQuant = itemQuantity + 1;
+    setItemQuantity(newQuant);
+    sessionStorage.setItem(`quantity${index}`, newQuant);
+  }
 
   return (
     <div className="cart-item">
@@ -22,34 +53,15 @@ function ShoppingCartItem({ item, index, removeCartItem, getStockQuants, totalQu
       />
       <div className="cart-item-info">
         <p className="product-name">{item.name}</p>
-        <p>${(item.price * quantity).toFixed(2)}</p>
+        <p>${(item.price * itemQuantity).toFixed(2)}</p>
         <div className="cart-item-quantity">
-          {quantity > 1 && (
-            <button
-              className="subtract-item"
-              onClick={() => {
-                setQuantity((prev) => {
-                  const subQuant = prev - 1;
-                  sessionStorage.setItem(`quantity${index}`, subQuant);
-                  return subQuant;
-                });
-              }}
-            >
+          {itemQuantity > 1 && (
+            <button className="subtract-item" onClick={subtractQuant}>
               -
             </button>
           )}
-          <p>{quantity}</p>
-          <button
-            className="add-item"
-            onClick={() => {
-              setQuantity((prev) => {
-                const addedQuant = prev + 1;
-                sessionStorage.setItem(`quantity${index}`, addedQuant);
-                item.quantity = quantity;
-                return addedQuant;
-              });
-            }}
-          >
+          <p>{itemQuantity}</p>
+          <button className="add-item" onClick={addQuant}>
             +
           </button>
         </div>
@@ -71,7 +83,8 @@ ShoppingCartItem.propTypes = {
   index: PropTypes.number.isRequired,
   removeCartItem: PropTypes.func.isRequired,
   getStockQuants: PropTypes.func,
-  totalQuant: PropTypes.number
+  totalQuant: PropTypes.number,
+  setTotalQuant: PropTypes.func,
 };
 
 export default ShoppingCartItem;

@@ -25,7 +25,5 @@ createRoot(document.getElementById("root")).render(
       </Router>
     </ShoppingCartProvider>
   </SupabaseProvider>,
-  {
-    /* </StrictMode>, */
-  }
+  // </StrictMode>
 );
