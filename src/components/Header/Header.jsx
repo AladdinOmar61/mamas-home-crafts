@@ -23,7 +23,7 @@ function Header() {
   const size = useWindowSize();
 
   const { user, logout } = useSupabase();
-  const { quantity, setQuantity, setCart } = useShoppingCart();
+  const { quantity, cart, setCart, setQuantity } = useShoppingCart();
 
   const handleProfile = () => {
     setProfileOpened(!profileOpened);
@@ -60,19 +60,18 @@ function Header() {
   };
 
   const getStockQuants = () => {
+    // debugger;
     let stockCounter = 0;
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i);
-      const value = sessionStorage.getItem(key);
-      if (key.startsWith("quantity")) {
-        stockCounter += parseInt(value, 10);
+    if (cart) {
+      for (let i = 0; i < cart.length; i++) {
+        stockCounter += cart[i].quantity;
       }
     }
     setQuantity(stockCounter);
-     console.log("total quantity: " + quantity);
   };
 
   useEffect(() => {
+    // debugger;
     const existingCart = JSON.parse(sessionStorage.getItem("products"));
     setCart(existingCart);
     toggleProfileWindow();

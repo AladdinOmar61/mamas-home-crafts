@@ -14,18 +14,20 @@ function ShoppingCart({
   const { cart, setCart } = useShoppingCart();
 
   const removeCartItem = (itemToRemove) => {
+    // debugger;
     const storedCart = sessionStorage.getItem("products");
     if (storedCart) {
       const currCart = JSON.parse(storedCart);
-      const filteredCart = currCart.filter(
+      const copiedCart = currCart.map((item) => ({ ...item }));
+      const filteredCart = copiedCart.filter(
         (cartItem, index) => index !== itemToRemove
       );
       const newCart = JSON.stringify(filteredCart);
       sessionStorage.setItem("products", newCart);
-      sessionStorage.removeItem(`quantity${cart.indexOf(cart[itemToRemove])}`);
+      sessionStorage.removeItem(`quantity${itemToRemove}`);
       setCart(filteredCart);
+      getStockQuants();
     }
-    getStockQuants();
   };
 
   return (

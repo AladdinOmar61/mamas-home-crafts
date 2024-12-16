@@ -18,9 +18,18 @@ function ProductItem() {
     setCurrImg(getProdItem.data[0].images[0]);
   };
 
+  const updateCartQuantity = (newQuantity) => {
+    const updatedCart = cart.map((cartItem) => {
+      if (cartItem.id === prod.id) {
+        return { ...cartItem, quantity: newQuantity };
+      }
+      return cartItem;
+    });
+    setCart(updatedCart);
+    sessionStorage.setItem("products", JSON.stringify(updatedCart));
+  };
+
   const addToCart = () => {
-    // console.log(cart);
-    // debugger;
     let isDuplicate = false;
     let quantCounter = 0;
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
@@ -32,6 +41,7 @@ function ProductItem() {
           let addedQuant = itemQuant + 1
           quantCounter = addedQuant;
           sessionStorage.setItem(`quantity${i}`, addedQuant);
+          updateCartQuantity(addedQuant);
           isDuplicate = true;
         }
       }
@@ -43,28 +53,24 @@ function ProductItem() {
       setCart(updatedCart);
     }
     const currCartLen = JSON.parse(sessionStorage.getItem("products")).length;
-    // console.log(currCartLen);
     sessionStorage.setItem(`quantity${currCartLen - 1}`, quantCounter === 0 ? 1 : quantCounter);
   };
 
-  const getSessionStockQuants = () => {
-    let seshStockCounter = 0;
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i);
-      const value = sessionStorage.getItem(key);
-      if (key.startsWith("quantity")) {
-        seshStockCounter += parseInt(value, 10);
+  const getStockQuants = () => {
+    let stockCounter = 0;
+    if (cart) {
+      for (let i = 0; i < cart.length; i++) {
+        stockCounter += cart[i].quantity;
       }
     }
-    setQuantity(seshStockCounter)
-    // return seshStockCounter;
+    setQuantity(stockCounter);
   };
 
   useEffect(() => {
     // needs to keep track of session storage stock quantity!
     productItem();
-    getSessionStockQuants();
-  }, [prodId]);
+    getStockQuants();
+  }, [prodId, cart]);
 
   return (
     <>
@@ -106,7 +112,6 @@ function ProductItem() {
                 className="add-cart-btn"
                 onClick={() => {
                   addToCart();
-                  getSessionStockQuants();
                 }}
               >
                 Add to cart

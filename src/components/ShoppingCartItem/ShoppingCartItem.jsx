@@ -5,19 +5,19 @@ import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 function ShoppingCartItem({ item, index, removeCartItem }) {
   const [itemQuantity, setItemQuantity] = useState(item.quantity);
 
-  const { setQuantity } = useShoppingCart();
+  const { quantity, cart, setCart, setQuantity } = useShoppingCart();
 
   const getStockQuants = () => {
     let stockCounter = 0;
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i);
-      const value = sessionStorage.getItem(key);
-      if (key.startsWith("quantity")) {
-        stockCounter += parseInt(value, 10);
+    if (cart) {
+      for (let i = 0; i < cart.length; i++) {
+        stockCounter += cart[i].quantity;
       }
     }
     setQuantity(stockCounter);
   };
+
+  console.log(quantity);
 
   useEffect(() => {
     const storedQuantity = sessionStorage.getItem(`quantity${index}`);
@@ -32,9 +32,10 @@ function ShoppingCartItem({ item, index, removeCartItem }) {
 
   const subtractQuant = () => {
     if (itemQuantity > 1) {
-      const newQuantity = itemQuantity - 1;
-      setItemQuantity(newQuantity);
-      sessionStorage.setItem(`quantity${index}`, newQuantity);
+      const newQuant = itemQuantity - 1;
+      setItemQuantity(newQuant);
+      sessionStorage.setItem(`quantity${index}`, newQuant);
+      updateCartQuantity(newQuant);
     }
   };
 
@@ -42,7 +43,19 @@ function ShoppingCartItem({ item, index, removeCartItem }) {
     const newQuant = itemQuantity + 1;
     setItemQuantity(newQuant);
     sessionStorage.setItem(`quantity${index}`, newQuant);
+    updateCartQuantity(newQuant);
   }
+
+  const updateCartQuantity = (newQuantity) => {
+    const updatedCart = cart.map((cartItem, cartIndex) => {
+      if (cartIndex === index) {
+        return { ...cartItem, quantity: newQuantity };
+      }
+      return cartItem;
+    });
+    setCart(updatedCart);
+    sessionStorage.setItem("products", JSON.stringify(updatedCart));
+  };
 
   return (
     <div className="cart-item">
@@ -60,7 +73,7 @@ function ShoppingCartItem({ item, index, removeCartItem }) {
               -
             </button>
           )}
-          <p>{itemQuantity}</p>
+          <p>{item.quantity}</p>
           <button className="add-item" onClick={addQuant}>
             +
           </button>
