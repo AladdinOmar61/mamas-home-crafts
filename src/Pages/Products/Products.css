@@ -4,27 +4,22 @@
 }
 
 .product-gallery {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.product-items {
-  border: solid black 1px;
-  width: 29%;
-  height: 30rem;
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .product-item {
+  border: solid black 1px;
+  position: relative;
+}
+
+.product-item-img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   background-size: contain;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .view-product {

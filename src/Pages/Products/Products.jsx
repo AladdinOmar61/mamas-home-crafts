@@ -43,9 +43,9 @@ function Products() {
               key={prod.id}
               onMouseEnter={() => handleMouseEnter(prod.id)}
               onMouseLeave={handleMouseLeave}
-              className="product-items"
+              className="product-item"
             >
-              <img className="product-item" src={prod.images[0]}></img>
+              <img className="product-item-img" src={prod.images[0]}></img>
               {hoveredProd === prod.id && (
               <div className="view-product">
                 <p className="view-product-text">VIEW PRODUCT</p>

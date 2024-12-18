@@ -32,6 +32,7 @@ function ShoppingCart({
   return (
     <div className="shopping-cart">
       <ReactModal
+        ariaHideApp={false}
         contentLabel="Shopping Cart"
         className={{
           base: "CartModal",

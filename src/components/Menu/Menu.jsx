@@ -9,6 +9,7 @@ function Menu({ menuOpened, handleMenu }) {
   return (
     <div className="menu-modal">
       <ReactModal
+        ariaHideApp={false}
         contentLabel="Menu"
         className={{
           base: "MenuModal",
@@ -42,10 +43,12 @@ function Menu({ menuOpened, handleMenu }) {
       >
         <Icon className="close-menu" onClick={handleMenu} path={mdiClose} />
         <h1 className="menu-header">Menu</h1>
-              <hr className="menu-divider" />
-              <div className="menu-options">
-                  <Link to="/products" className="menu-link">Products</Link>
-              </div>
+        <hr className="menu-divider" />
+        <div className="menu-options">
+          <Link to="/products" className="menu-link">
+            Products
+          </Link>
+        </div>
       </ReactModal>
     </div>
   );
