@@ -14,7 +14,6 @@ function ShoppingCart({
   const { cart, setCart } = useShoppingCart();
 
   const removeCartItem = (itemToRemove) => {
-    // debugger;
     const storedCart = sessionStorage.getItem("products");
     if (storedCart) {
       const currCart = JSON.parse(storedCart);
@@ -33,7 +32,6 @@ function ShoppingCart({
   return (
     <div className="shopping-cart">
       <ReactModal
-        ariaHideApp={false}
         contentLabel="Shopping Cart"
         className={{
           base: "CartModal",

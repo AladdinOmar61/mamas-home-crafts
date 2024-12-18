@@ -12,11 +12,12 @@ import { useSupabase } from "../../../lib/hooks/useSupabase";
 import { useWindowSize } from "@uidotdev/usehooks";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 import { useShoppingCart } from "../../../lib/hooks/useShoppingCart.js";
+import Menu from "../Menu/Menu.jsx";
 
 function Header() {
   const [cartOpened, setCartOpened] = useState(false);
+  const [menuOpened, setMenuOpened] = useState(false);
   const [profileOpened, setProfileOpened] = useState(false);
-  // const [totalQuant, setTotalQuant] = useState(0); // starting here for quant
 
   const profileRef = useRef(null);
 
@@ -31,6 +32,10 @@ function Header() {
 
   const handleCart = () => {
     setCartOpened(!cartOpened);
+  };
+
+  const handleMenu = () => {
+    setMenuOpened(!menuOpened);
   };
 
   const logoutUser = async () => {
@@ -60,7 +65,6 @@ function Header() {
   };
 
   const getStockQuants = () => {
-    // debugger;
     let stockCounter = 0;
     if (cart) {
       for (let i = 0; i < cart.length; i++) {
@@ -71,7 +75,6 @@ function Header() {
   };
 
   useEffect(() => {
-    // debugger;
     const existingCart = JSON.parse(sessionStorage.getItem("products"));
     setCart(existingCart);
     toggleProfileWindow();
@@ -117,9 +120,7 @@ function Header() {
                     </button>
                   ) : (
                     <button className="login-btn">
-                      <Link to="/login" className="">
-                        Login
-                      </Link>
+                      <Link to="/login">Login</Link>
                     </button>
                   )}
                 </div>
@@ -129,24 +130,26 @@ function Header() {
         </div>
       ) : (
         <div className="mobile-header-nav">
-          <Icon path={mdiMenu} size={size.width < 500 ? 1 : 1.5} />
+          <div className="menu-div">
+            <Icon
+              className="cart"
+              path={mdiMenu}
+              onClick={handleMenu}
+              size={size.width < 500 ? 1 : 1.5}
+            />
+          </div>
           <Link to="/" className="website-title">
             Mamas Home Crafts
           </Link>
 
-          <div className="icons">
+          <div className="cart-div">
             <Icon
               className="cart"
               onClick={handleCart}
               path={mdiCartOutline}
               size={size.width < 500 ? 1 : 1.5}
             />
-            <Icon
-              className="account"
-              onClick={handleProfile}
-              path={mdiAccountOutline}
-              size={size.width < 500 ? 1 : 1.5}
-            />
+            {quantity > 0 && <div className="mobile-cart-ping">{quantity}</div>}
           </div>
         </div>
       )}
@@ -155,6 +158,7 @@ function Header() {
         cartOpened={cartOpened}
         handleCart={handleCart}
       />
+      <Menu menuOpened={menuOpened} handleMenu={handleMenu} />
     </div>
   );
 }

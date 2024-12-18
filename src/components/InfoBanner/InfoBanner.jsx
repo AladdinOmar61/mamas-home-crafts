@@ -10,7 +10,7 @@ function InfoBanner() {
         <p className="banner-text">
           Home decor for you <br /> or a gift for a friend <br /> Made by mama
         </p>
-        <button className="buy-now">
+        <button className="shop-now">
           <Link to="/products" className="shop-now-link">
             Shop now
           </Link>

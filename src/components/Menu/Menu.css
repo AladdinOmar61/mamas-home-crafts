@@ -1,0 +1,67 @@
+.MenuModal {
+    transform: translateX(-100%);
+    transition: transform 300ms ease-in-out;
+    background-color: white;
+    overflow-y: scroll;
+}
+
+.MenuModal:focus-visible {
+  border: none;
+}
+
+.MenuModal--after-open {
+    transform: translateX(0%);
+    transition: transform 300ms ease-in-out;
+}
+
+.MenuModal--after-open:focus-visible {
+  border: none;
+}
+
+.MenuModal--before-close {
+    transform: translateX(-200%);
+}
+
+.close-menu {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  background-color: white;
+  color: black;
+  height: 2rem;
+  width: 2rem;
+  font-size: 1.5rem;
+}
+
+.menu-header {
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  margin: 0;
+  height: 2rem;
+  font-weight: 400;
+  color: black;
+}
+
+.menu-divider {
+  margin-top: 4.5rem;
+}
+
+.menu-options {
+    margin-top: 2rem;
+    margin-left: 1.3rem;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    border-bottom: solid transparent 1px;
+    padding-bottom: 0.3rem;
+    transition: all 0.3s;
+}
+
+.menu-link:hover {
+    border-bottom: solid black 1px;
+    transition: all 0.3s;
+}

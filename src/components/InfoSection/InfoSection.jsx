@@ -37,8 +37,8 @@ function InfoSection() {
               className={`mobile-info-bit ${index === currIdx ? "active" : ""}`}
               style={{ color: "white" }}
             >
-              <Icon path={icon.name} size={1.5} className="info-icon" />
-              <p className="info-text">{icon.msg}</p>
+              <Icon path={icon.name} size={1.3} className="info-icon" />
+              <p className="mobile-info-text">{icon.msg}</p>
             </div>
           ))}
         </div>

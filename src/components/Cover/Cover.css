@@ -64,12 +64,6 @@
     font-size: 2rem;
   }
 
-  .explore {
-    width: 7rem;
-    height: 2.2rem;
-    font-size: 1rem;
-  }
-
   .explore-btn {
     width: 6rem;
     height: 2.2rem;
@@ -80,12 +74,6 @@
 @media screen and (max-width: 900px) {
   .cover-text {
     font-size: 1.7rem;
-  }
-
-  .explore {
-    width: 6rem;
-    height: 2rem;
-    font-size: 1rem;
   }
 }
 
@@ -115,7 +103,7 @@
 
 @media screen and (max-width: 450px) {
   .cover-text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .explore-btn {
