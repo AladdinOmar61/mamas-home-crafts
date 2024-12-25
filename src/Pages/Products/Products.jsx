@@ -45,16 +45,24 @@ function Products() {
               onMouseLeave={handleMouseLeave}
               className="product-item"
             >
-              <img className="product-item-img" src={prod.images[0]}></img>
+              <img
+                className={`product-item-img ${
+                  hoveredProd === prod.id ? "blurred-img" : ""
+                }`}
+                src={prod.images[0]}
+              ></img>
               {hoveredProd === prod.id && (
-              <div className="view-product">
-                <p className="view-product-text">VIEW PRODUCT</p>
-              </div>
+                <div className="view-product">
+                  <button className="view-product-btn">VIEW PRODUCT</button>
+                  <button className="buy-product-btn">BUY NOW</button>
+                </div>
               )}
             </Link>
           ))
         ) : (
-          <p>Loading...</p>
+          <div className="loading">
+            <p>Loading...</p>
+          </div>
         )}
       </div>
     </Layout>
