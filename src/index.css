@@ -21,23 +21,12 @@ html, body {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #2ED14B; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: black;
-}
-
-p {
-  color: black;
-} */
 
 @media (prefers-color-scheme: light) {
   :root {
