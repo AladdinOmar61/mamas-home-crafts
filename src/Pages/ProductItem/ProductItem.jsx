@@ -4,13 +4,16 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./ProductItem.css";
 import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 function ProductItem() {
   const { prodId } = useParams();
-  const { getProductItem} = useSupabase();
+  const { getProductItem } = useSupabase();
   const { cart, setCart, setQuantity } = useShoppingCart();
   const [prod, setProd] = useState({});
   const [currImg, setCurrImg] = useState("");
+
+  const size = useWindowSize();
 
   const productItem = async () => {
     const getProdItem = await getProductItem(prodId);
@@ -33,12 +36,11 @@ function ProductItem() {
     let isDuplicate = false;
     let quantCounter = 0;
     const existingCart = JSON.parse(sessionStorage.getItem("products")) || [];
-    if (cart && cart.length > 0)
-    {
+    if (cart && cart.length > 0) {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === prod.id) {
           let itemQuant = parseInt(sessionStorage.getItem(`quantity${i}`));
-          let addedQuant = itemQuant + 1
+          let addedQuant = itemQuant + 1;
           quantCounter = addedQuant;
           sessionStorage.setItem(`quantity${i}`, addedQuant);
           updateCartQuantity(addedQuant);
@@ -46,14 +48,17 @@ function ProductItem() {
         }
       }
     }
-    
-    if(isDuplicate === false) {
+
+    if (isDuplicate === false) {
       const updatedCart = [...existingCart, prod];
       sessionStorage.setItem("products", JSON.stringify(updatedCart));
       setCart(updatedCart);
     }
     const currCartLen = JSON.parse(sessionStorage.getItem("products")).length;
-    sessionStorage.setItem(`quantity${currCartLen - 1}`, quantCounter === 0 ? 1 : quantCounter);
+    sessionStorage.setItem(
+      `quantity${currCartLen - 1}`,
+      quantCounter === 0 ? 1 : quantCounter
+    );
   };
 
   const getStockQuants = () => {
@@ -74,25 +79,45 @@ function ProductItem() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
-          <div className="single-product-imgs">
-            {prod.images && prod.images.length > 0 ? (
-              <img className="product-img" src={currImg} alt={prod.name} />
-            ) : (
-              "Loading..."
-            )}
-            <div className="subimg-container">
+          {size.width < 1250 ? (
+            <swiper-container
+              slides-per-view="1"
+              speed="500"
+              loop="true"
+              css-mode="true"
+            >
+              {/* <swiper-slide>Slide 1</swiper-slide>
+               */}
               {prod?.images &&
                 prod?.images.map((pdimg, idx) => (
-                  <div key={idx} onClick={() => setCurrImg(pdimg)}>
-                    <img className="product-subimg" src={pdimg} />
-                  </div>
+                  <>
+                    <swiper-slide key={idx}>
+                      <img className="product-subimg" src={pdimg} />
+                    </swiper-slide>
+                  </>
                 ))}
+            </swiper-container>
+          ) : (
+            <div className="single-product-imgs">
+              {prod.images && prod.images.length > 0 ? (
+                <img className="product-img" src={currImg} alt={prod.name} />
+              ) : (
+                "Loading..."
+              )}
+              <div className="subimg-container">
+                {prod?.images &&
+                  prod?.images.map((pdimg, idx) => (
+                    <div key={idx} onClick={() => setCurrImg(pdimg)}>
+                      <img className="product-subimg" src={pdimg} />
+                    </div>
+                  ))}
+              </div>
             </div>
-          </div>
+          )}
           <div className="single-product-desc-section">
             <div>
               <h3>Description</h3>

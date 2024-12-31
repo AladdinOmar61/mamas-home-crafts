@@ -1,6 +1,6 @@
   .feature-gallery {
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     scrollbar-width: none;
     box-sizing: border-box;
     margin: 3rem 20px;
