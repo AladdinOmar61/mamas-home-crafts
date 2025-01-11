@@ -5,6 +5,8 @@ import Header from "../../components/Header/Header";
 import "./ProductItem.css";
 import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 import { useWindowSize } from "@uidotdev/usehooks";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 function ProductItem() {
   const { prodId } = useParams();
@@ -80,27 +82,28 @@ function ProductItem() {
   return (
     <>
       <Header />
-      <div className="single-product">
+       <div className="single-product">
         <h1>{prod.name}</h1>
         <div className="single-product-info">
           {size.width < 1250 ? (
-            <swiper-container
-              slides-per-view="1"
-              speed="500"
-              loop="true"
-              css-mode="true"
-            >
-              {/* <swiper-slide>Slide 1</swiper-slide>
-               */}
-              {prod?.images &&
-                prod?.images.map((pdimg, idx) => (
-                  <>
-                    <swiper-slide key={idx}>
-                      <img className="product-subimg" src={pdimg} />
-                    </swiper-slide>
-                  </>
+            //  <>
+              <Swiper
+                navigation={true}
+                spaceBetween={50}
+                slidesPerView={2}
+                onSlideChange={() => console.log("slide changed")}
+                style={{ height: 300 }}
+                // onSwiper={(swiper) => console.log(swiper)}
+              >
+                {prod?.images &&
+                  prod?.images.map((pdimg, idx) => (
+                <SwiperSlide style={{ backgroundColor: "blue" }}
+                  key={idx}>
+                  <img src={pdimg} style={{height: 100, width: 100}}></img>
+                </SwiperSlide>
                 ))}
-            </swiper-container>
+              </Swiper>
+          // </>
           ) : (
             <div className="single-product-imgs">
               {prod.images && prod.images.length > 0 ? (
