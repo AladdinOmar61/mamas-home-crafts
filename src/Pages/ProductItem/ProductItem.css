@@ -43,10 +43,11 @@
 }
 
 .single-product-desc-section {
-    width: 30rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    /* margin: 0 auto; */
 }
 
 .purchase-container {

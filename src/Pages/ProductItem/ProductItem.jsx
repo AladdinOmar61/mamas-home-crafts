@@ -6,7 +6,9 @@ import "./ProductItem.css";
 import { useShoppingCart } from "../../../lib/hooks/useShoppingCart";
 import { useWindowSize } from "@uidotdev/usehooks";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/bundle";
 
 function ProductItem() {
   const { prodId } = useParams();
@@ -82,29 +84,37 @@ function ProductItem() {
   return (
     <>
       <Header />
-       <div className="single-product">
+      <div className="single-product">
         <h1>{prod.name}</h1>
-        <div className="single-product-info">
+        <div className={`${size.width >= 1250 ? "single-product-info" : ""}`}>
           {size.width < 1250 ? (
             //  <>
-              <Swiper
-                navigation={true}
-                spaceBetween={50}
-                slidesPerView={2}
-                onSlideChange={() => console.log("slide changed")}
-                style={{ height: 300 }}
-                // onSwiper={(swiper) => console.log(swiper)}
-              >
-                {prod?.images &&
-                  prod?.images.map((pdimg, idx) => (
-                <SwiperSlide style={{ backgroundColor: "blue" }}
-                  key={idx}>
-                  <img src={pdimg} style={{height: 100, width: 100}}></img>
-                </SwiperSlide>
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              navigation
+              pagination={{clickable: true}}
+              spaceBetween={5}
+              slidesPerView={1}
+              onSlideChange={() => console.log("slide changed")}
+              style={{ height: 250 }}
+              onSwiper={(swiper) => console.log(swiper)}
+            >
+              {prod?.images &&
+                prod?.images.map((pdimg, idx) => (
+                  <SwiperSlide key={idx}>
+                    <img
+                      src={pdimg}
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    ></img>
+                  </SwiperSlide>
                 ))}
-              </Swiper>
-          // </>
+            </Swiper>
           ) : (
+            // </>
             <div className="single-product-imgs">
               {prod.images && prod.images.length > 0 ? (
                 <img className="product-img" src={currImg} alt={prod.name} />
