@@ -30,7 +30,7 @@ function ShoppingCart({
   };
 
   return (
-    <div className="shopping-cart">
+    // <div className="shopping-cart">
       <ReactModal
         ariaHideApp={false}
         contentLabel="Shopping Cart"
@@ -83,9 +83,11 @@ function ShoppingCart({
             <p style={{ textAlign: "center" }}>No items in cart</p>
           )}
         </div>
+        {/* <div className="checkout-container"> */}
         <button className="checkout">Checkout</button>
+        {/* </div> */}
       </ReactModal>
-    </div>
+    // </div>
   );
 }
 ShoppingCart.propTypes = {

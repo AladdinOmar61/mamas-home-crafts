@@ -1,8 +1,12 @@
+/* .shopping-cart {
+  position: relative;
+  overflow-y: scroll;
+} */
+
 .CartModal {
     transform: translateX(100%);
     transition: transform 300ms ease-in-out;
     background-color: white;
-    overflow-y: scroll;
 }
 
 .CartModal:focus-visible {
@@ -69,6 +73,8 @@
 
 .cart-item-list {
   margin-top: 2rem;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .cart-item {
@@ -94,10 +100,7 @@
 }
 
 .cart-item-quantity {
-  /* border: solid black 1px; */
-  /* width: 5rem;*/
   height: 1.2rem;
-  /* text-align: center; */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -121,16 +124,24 @@
   font-size: 1rem;
 }
 
+.checkout-container {
+  position: fixed;
+  margin: 1rem 0;
+}
+
 .checkout {
   position: absolute;
-  bottom: 0;
+  bottom: 2%;
+  left: 5%;
   width: 90%;
-  margin: 1rem auto;
+  margin: 0 auto;
   font-family: "Josefin Sans", sans-serif;
   height: 2rem;
   font-size: 1.3rem;
-  transform: translateX(6%);
   transition: all 0.3s;
+  background-color: white;
+  border: solid black 1px;
+  color: black;
 }
 
 .checkout:hover {

@@ -88,10 +88,10 @@ function ProductItem() {
         <h1>{prod.name}</h1>
         <div className={`${size.width >= 1250 ? "single-product-info" : ""}`}>
           {size.width < 1250 ? (
-            //  <>
             <Swiper
               modules={[Navigation, Pagination, Scrollbar, A11y]}
               navigation
+              loop
               pagination={{clickable: true}}
               spaceBetween={5}
               slidesPerView={1}
@@ -114,7 +114,6 @@ function ProductItem() {
                 ))}
             </Swiper>
           ) : (
-            // </>
             <div className="single-product-imgs">
               {prod.images && prod.images.length > 0 ? (
                 <img className="product-img" src={currImg} alt={prod.name} />
